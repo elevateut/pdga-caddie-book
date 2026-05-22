@@ -1,0 +1,349 @@
+# ============================================================================
+# Wunderment 26 — Reference event.yaml for pdga-caddie-book
+# ============================================================================
+# This is the actual config ElevateUT ships for the Wunderment 26 tournament
+# at The Wasatch Wunder (Wasatch Mountain State Park, Midway, UT).
+#
+# Use it as a model for your own event. All sections are optional unless noted.
+# Layout data (par, length, tee/target) is pulled from PDGA Tournament Manager
+# at build time using the `pdga_tournament_id` below. Anything not in PDGA
+# (sponsors, welcomes, schedule, course rules) lives here.
+# ============================================================================
+
+event:
+  name: "Wunderment 26"
+  tagline: "The Wasatch Wunder · Midway, UT"
+  dates: "May 30–31, 2026"
+  location: "Midway, UT"
+  pdga_tournament_id: 101284           # REQUIRED — drives layout fetch
+  description: "Wunderment 26 caddie book — hole maps, course rules, schedule, and tournament info. The Wasatch Wunder, May 30–31, 2026."
+
+# ----------------------------------------------------------------------------
+# Branding — logos shown on cover, day intros, sponsor cards, back cover.
+# Paths are relative to this event.yaml file.
+# ----------------------------------------------------------------------------
+brand:
+  primary_logo: images/wunderment-logo.png    # circular logo on cover/back
+  org_logo:     images/elevateut-logo.png     # smaller logo, footer area
+  venue_logo:   images/wunder-logo.png        # smaller logo, footer area
+  font_family_css: "Articulat CF, sans-serif"
+  fonts:
+    - { file: fonts/ArticulatCF-Heavy.otf,    family: "Articulat CF", weight: 900 }
+    - { file: fonts/ArticulatCF-DemiBold.ttf, family: "Articulat CF", weight: 700 }
+    - { file: fonts/ArticulatCF-Medium.otf,   family: "Articulat CF", weight: 500 }
+    - { file: fonts/ArticulatCF-Normal.ttf,   family: "Articulat CF", weight: 400 }
+
+# ----------------------------------------------------------------------------
+# Deployment / social — used to build OG image URLs and the deep-link base.
+# ----------------------------------------------------------------------------
+deploy:
+  url_base: "https://elevateut.org/caddy/wunderment"
+  # {pool} is replaced with the lowercased pool key (a, b, c, …)
+  og_image_pattern: "images/og-pool-{pool}.jpg"
+
+# ----------------------------------------------------------------------------
+# Pools — one entry per pool. The pool key (A/B/C) determines the URL slug
+# and the highlighted pool in the assignments slide.
+#
+# Each pool has 1+ days, each pointing at a PDGA layout_id.
+# Layout IDs come from `pdga-caddie-book pull <tournament_id>`.
+#
+# If a pool plays the same layout both days, point days at the same layout_id.
+# ----------------------------------------------------------------------------
+pools:
+  A:
+    name: "A Pool"
+    divisions: "MPO, MP40, MP50, MA1"
+    description: "Championship layout — long pads, full difficulty"
+    cover_subtitle: "The Wunder we know and love. 10A plays from the short pad."
+    color: { bg: "#2C4A2E", accent: "#5C7A4A", light: "#E8F0E4", name: "Forest Green" }
+    players_per_card: 5
+    days:
+      - { label: "Day 1", date: "Saturday, May 30", layout_id: 758489 }
+      - { label: "Day 2", date: "Sunday, May 31",   layout_id: 758491 }
+  B:
+    name: "B Pool"
+    divisions: "FPO, FP40-50, MP60-70, FA1, MA40-50, MA2, MA3, FA40, MA60, MA4"
+    description: "Near-identical to A with select hole differences"
+    cover_subtitle: "Near-identical to A with select hole differences"
+    color: { bg: "#1E3A5C", accent: "#4A7A9A", light: "#E4ECF4", name: "Creek Blue" }
+    players_per_card: 5
+    days:
+      - { label: "Day 1", date: "Saturday, May 30", layout_id: 758787 }
+      - { label: "Day 2", date: "Sunday, May 31",   layout_id: 758789 }
+  C:
+    name: "C Pool"
+    divisions: "FA4, FA60"
+    description: "Birdie-friendly — short pads, creek = mandatory relief"
+    cover_subtitle: "Birdie-friendly — short pads, creek = mandatory relief"
+    color: { bg: "#6B5B2E", accent: "#9A8A5A", light: "#F4F0E4", name: "Meadow Gold" }
+    players_per_card: 6
+    days:
+      - { label: "Day 1", date: "Saturday, May 30", layout_id: 758495 }
+      # C Pool plays the same 18 holes both days — pass `same_as` to avoid duplicating
+      - { label: "Day 2", date: "Sunday, May 31",   layout_id: 758495, same_as_previous: true }
+
+# ----------------------------------------------------------------------------
+# Hole overrides — augment or replace PDGA-supplied per-hole fields.
+# Keyed by LayoutID → display_order (string) → field overrides.
+# Any field omitted falls back to the PDGA value.
+#
+# Useful when:
+#   - PDGA notes are terse and you want richer ground rules
+#   - Local knowledge (mandos, hazard flag colors, etc.) isn't in TM
+#   - You want pool-specific notes for the same physical hole
+# ----------------------------------------------------------------------------
+hole_overrides:
+  # ---------------- A Pool — Day 1 (LayoutID 758489) ----------------
+  "758489":
+    "1":  { notes: "A Position Round 1" }
+    "2":  { notes: "Short Pad to Hazard Island. Logs = hazard boundary" }
+    "3":  { notes: "Across the road. OB left and long of basket (flags)" }
+    "4":  { notes: "OB left side over creek bed" }
+    "5":  { notes: "Road and beyond OB. OB left side of fairway and green. 10A flags OB" }
+    "6":  { notes: "A position both rounds" }
+    "7":  { notes: "Long Pad → Long Basket on hill. Substation OB" }
+    "8":  { notes: "B Position both rounds. Hazard island (rope + flags)" }
+    "9":  { notes: "Dual mandos. DZ between mandos. OB right past logs and left. Creek bed: optional relief straight back toward tee, no penalty" }
+    "10": { notes: "B position Day 1 from the deck. OB left side of fairway (marked with flags). Creek bed: optional relief straight back toward tee, no penalty" }
+    "11": { notes: "C position all rounds. OB left guarding hole 15" }
+    "12": { notes: "Mando LEFT — must throw past the mando trees. OB upper right beyond basket. Road + gravel lot OB. DZ marked C/DZ (white flag) — same spot as C Pool's tee" }
+    "13": { notes: "Road OB. Flags protecting 17 OB" }
+    "14": { notes: "HIKERS HAVE RIGHT OF WAY. All asphalt OB. 2m relief from Guardsman's" }
+    "15": { notes: "A Pool plays the WHITE flags as hazard island. OB pocket by tee" }
+    "16": { notes: "Mando left of tree in woods. Road OB. 2m relief from Guardsman's" }
+    "17": { notes: "Mando LEFT of the dead tree. HIKERS HAVE RIGHT OF WAY" }
+    "18": { notes: "Long Pad. Road and beyond on left OB. Creek OB if running" }
+    "19": { notes: "B position. OB plays as flagged river. All OB shots (tee or otherwise) proceed to DZ with one-stroke penalty" }
+    "20": { notes: "Left position both days" }
+    "21": { notes: "B position Day 1. OB flags left side + OB right side by yurt" }
+
+  # ---------------- A Pool — Day 2 (LayoutID 758491) ----------------
+  "758491":
+    "1":  { notes: "B Position Round 2" }
+    "2":  { notes: "Long Pad" }
+    "3":  { notes: "Across the road. OB left and long of basket (flags)" }
+    "4":  { notes: "OB left side over creek bed" }
+    "5":  { notes: "Road and beyond OB. OB left side of fairway and green. 10A flags OB" }
+    "6":  { notes: "A position both rounds" }
+    "7":  { notes: "Long Pad → Long Basket on hill. Substation OB" }
+    "8":  { notes: "B Position both rounds. Hazard island (rope + flags)" }
+    "9":  { notes: "Dual mandos. DZ between mandos. OB right past logs and left. Creek bed: optional relief straight back toward tee, no penalty" }
+    "10": { notes: "A position Day 2 from the deck. OB left side of fairway (marked with flags). Creek bed: optional relief straight back toward tee, no penalty" }
+    "11": { notes: "C position all rounds. OB left guarding hole 15" }
+    "12": { notes: "Mando LEFT — must throw past the mando trees. OB upper right beyond basket. Road + gravel lot OB. DZ marked C/DZ (white flag) — same spot as C Pool's tee" }
+    "13": { notes: "Road OB. Flags protecting 17 OB" }
+    "14": { notes: "HIKERS HAVE RIGHT OF WAY. All asphalt OB. 2m relief from Guardsman's" }
+    "15": { notes: "COMBO: Hole 2 tee → Hole 3 basket. Mando left of tree. DZ. Road OB. NOTE: Hole 2 hazard island is NOT in play for this round" }
+    "16": { notes: "Mando LEFT of the dead tree. HIKERS HAVE RIGHT OF WAY" }
+    "17": { notes: "Long Pad. Road and beyond on left OB. Creek OB if running" }
+    "18": { notes: "B position. OB plays as flagged river. All OB shots (tee or otherwise) proceed to DZ with one-stroke penalty" }
+    "19": { notes: "Left position both days" }
+    "20": { notes: "A position Day 2. OB flags left + OB right by yurt" }
+
+  # ---------------- B Pool — Day 1 (LayoutID 758787) ----------------
+  "758787":
+    "1":  { notes: "A Position Round 1" }
+    "15": { notes: "B Pool plays the GREEN flags as hazard island. OB pocket by tee" }
+    "17": { notes: "Mando LEFT of the dead tree. HIKERS HAVE RIGHT OF WAY" }
+
+  # ---------------- B Pool — Day 2 (LayoutID 758789) ----------------
+  "758789":
+    "15": { notes: "COMBO: Hole 2 tee → Hole 3 basket. Mando left of tree. DZ. Road OB. NOTE: Hole 2 hazard island is NOT in play for this round" }
+    "16": { notes: "Mando LEFT of the dead tree. HIKERS HAVE RIGHT OF WAY" }
+
+  # ---------------- C Pool — Both Days (LayoutID 758495) ----------------
+  "758495":
+    "6":  { notes: "C Pool plays from the Short Pad (DZ). Creek bed: optional relief straight back toward tee, no penalty" }
+    "7":  { notes: "B position from short pad. OB left (flags). Creek bed: optional relief straight back toward tee, no penalty" }
+    "9":  { notes: "Tee marked C/DZ (white flag). OB gravel lot right" }
+    "12": { notes: "All pools play long pad. Ignore all flags" }
+    "13": { notes: "Mando left of tree. DZ" }
+    "14": { notes: "Mando LEFT of the dead tree. HIKERS HAVE RIGHT OF WAY" }
+    "15": { notes: "Short pad to main basket. Mandatory relief from creek" }
+    "16": { notes: "B position. Par 4. River plays as flagged OB — if disc lands in flagged river, proceed to DZ with no penalty" }
+
+# ----------------------------------------------------------------------------
+# Hole images — tee sign photos / map JPGs shown on hole slides.
+#
+# Default: looks for `{base_dir}/{default_pattern}` per course hole label.
+# Override: per_pool / per_layout overrides for specific holes.
+# Holes in `no_map_holes` show a "No map available" placeholder.
+# ----------------------------------------------------------------------------
+images:
+  base_dir: images
+  # `{hole}` is the course hole number; `{hole:02d}` zero-pads to 2 digits
+  default_pattern: "hole_{hole:02d}.jpg"
+
+  no_map_holes: ["10A", "10B", "10C", "2/3"]
+
+  # Per-pool overrides — for the same course hole, different pools see
+  # different image. (Wunder Hole 2: A pool sees white flags, B sees green.)
+  per_pool:
+    A:
+      "2": "hole_02_a.jpg"
+    B:
+      "2": "hole_02_b.jpg"
+
+  # Per-layout override — when C Pool plays Hole 12 from the short pad
+  # to a different basket, swap in a different photo.
+  per_layout:
+    "758495":
+      "12": "hole_12_short.jpg"
+
+# ----------------------------------------------------------------------------
+# Schedule — multi-day timeline shown on the Schedule slide.
+# ----------------------------------------------------------------------------
+schedule:
+  - day: "Thu, May 29"
+    events:
+      - { time: "12:00 – 10:00 PM", text: "Camping opens! Come on up!" }
+      - { time: "Thursday League",  text: "Sanctioned singles at the Wunder." }
+      - { time: "4:30 – 5:00 PM",   text: "Random Draw Doubles signups at Tournament Central. $5 cash." }
+      - { time: "5:30 – 8:00 PM",   text: "Random Draw Doubles shotgun start." }
+  - day: "Fri, May 30"
+    events:
+      - { time: "Friday League",    text: "Sanctioned singles at the Wunder." }
+      - { time: "6:30 – 7:15 PM",   text: "Glow Round signups at Tournament Central. $5 cash." }
+      - { time: "7:30 – 10:00 PM",  text: "Glow Round shotgun start." }
+  - day: "Sat, May 31"
+    events:
+      - { time: "9:00 AM – 4:00 PM", text: "Round 1: Tee times, starting on Hole 9." }
+  - day: "Sun, Jun 1"
+    events:
+      - { time: "9:00 AM – 4:00 PM", text: "Round 2: Tee times, starting on Hole 9." }
+
+# ----------------------------------------------------------------------------
+# Parking + Camping slides
+# ----------------------------------------------------------------------------
+parking:
+  map: images/parking-map.jpg
+  callout:
+    headline: "All cars must display a camping pass or parking pass."
+    body: "The tournament will issue these at check-in. They are not obtained through the park."
+  body: "Tell the front desk staff you're here for the tournament and they should wave you in."
+  footnote: "Overflow parking by the dumpsters near the golf course entrance."
+
+camping:
+  map: images/camping-map.jpg
+  items:
+    - { label: "RV",              text: "If you have an RV spot, get here early. It becomes hard to park your rig once the lot is full." }
+    - { label: "Tent camping",    text: "Only as many tent spots as tents sold. First come first serve any spot in Miners Retreat or Springer Hollow." }
+    - { label: "Miners Retreat",  text: "= Tournament HQ. Typically the rowdier spot." }
+    - { label: "Springer Hollow", text: "= Chill AF." }
+
+# ----------------------------------------------------------------------------
+# TD / ED welcome slides. TD welcome can span multiple pages.
+# ----------------------------------------------------------------------------
+td_welcome:
+  name: "Nick Jennings"
+  title: "Tournament Director"
+  photo: images/nick-jennings.jpg
+  pages:
+    - title: "Welcome to Wunderment 26"
+      paragraphs:
+        - "We're excited to have you at The Wasatch Wunder for another weekend in one of the most unique, and magical, settings we get to play in Utah. This course has been built, shaped, redesigned, and improved by a whole lot of people who care deeply about disc golf, and we're proud to share it with you."
+        - "The Wasatch Wunder is a mountain course with personality. You're going to see elevation change, technical lines, obstructed putts, and a layout that rewards good decisions just as much as good shots. Stay patient, stay present, trust your game, and don't forget to appreciate the nature all around you. There will be scoring opportunities out there, but this course can bite back if you get ahead of yourself."
+    - title: "Welcome, Cont'd"
+      paragraphs:
+        - "More than anything, we want this event to feel fun, welcoming, and memorable. Thank you for being here, thank you for supporting ElevateUT, and thank you for helping us keep this course and this community moving forward."
+        - "Please take care of the space, respect the park and campers around us, and lean on staff and volunteers if you need anything during the event. We've had a lot of hands helping get this place ready, and we hope you feel that when you step on the first tee."
+        - "Have a great weekend, compete hard, and enjoy The Wasatch Wunder."
+
+ed_welcome:
+  name: "Scott Belchak"
+  title: "Executive Director • ElevateUT Disc Golf"
+  photo: images/scott-belchak.jpg
+  headline: "Disc Golf People Building Disc Golf Things"
+  paragraphs:
+    - "The Wunder. This is where it all began for me, and over the last several years, these small tournaments have turned into something amazing."
+    - "This is an XC-tier fundraiser tournament for ElevateUT Disc Golf 501(c)(3) — a nonprofit dedicated to increasing the quality and quantity of disc golf courses in Utah."
+    - "By playing in this event and accepting a modest player pack and payout, you are directly contributing to that vision. It's amazing to see what nonprofits can do in this great state of Utah."
+    - "Thank you for your contribution."
+
+# ----------------------------------------------------------------------------
+# Course rules slide.
+# Each item is shown as a label-value row. `text` is the default; optionally
+# provide `text_by_pool` to vary per-pool. `callouts.{POOL}` shows an alert
+# box above the rule list for that pool only.
+# ----------------------------------------------------------------------------
+rules:
+  callouts:
+    C:
+      headline: "C Pool — Find the WHITE Flags"
+      body: "Every tee pad you play has <strong>WHITE flags</strong> in front of it. If you don't see white flags, you're at the long pad — find the short pad before teeing off."
+  items:
+    - { label: "Roads",          text: "Any road and beyond = OB" }
+    - { label: "Creek",          text: "OB", text_by_pool: { C: "mandatory relief (no penalty)" } }
+    - { label: "Hikers",         text: "Right of way on Holes 1 &amp; 4. Wait until clear." }
+    - { label: "Mandos",         text: "DZ marked at each mandatory" }
+    - { label: "Hazard Islands", text: "Marked by rope/flags" }
+    - { label: "Guardsman's",    text: "2-meter relief where applicable" }
+    - { label: "Leave No Trace", text: "Pack out all trash" }
+
+# ----------------------------------------------------------------------------
+# Sponsors slide — each sponsor renders as a card with logo, description, URL.
+# Optional `cta` block renders a highlighted call-to-action button (e.g. hiring).
+# ----------------------------------------------------------------------------
+sponsors:
+  inquiry_email: scott@elevateut.com
+  cards:
+    - name: "Westside Discs"
+      logo: images/westside-logo.svg
+      description: "Player pack disc sponsor. Waived the stamp fee and gave us a great deal — thank you."
+      url: "https://westsidediscs.com"
+    - name: "HOWMZ"
+      logo: images/howmz-logo.svg
+      logo_width: 120
+      description: "Panelized home builder in Heber. Providing equipment + labor to improve the Wunder."
+      url: "https://howmz.com"
+      cta:
+        url: "https://howmz-careers.netlify.app/jobs"
+        eyebrow: "We're Hiring →"
+        text: "Framer · Finish Carpenter · Electrician · Plumber — Heber Valley"
+    - name: "Another Round SLC"
+      logo: images/another-round-logo.png
+      description: "Disc golf shop in Murray, UT — discs, bags, gear, and beer on tap."
+      url: "https://anotherroundsaltlake.com"
+
+# ----------------------------------------------------------------------------
+# Special thanks slide — credits roll at end of book.
+# ----------------------------------------------------------------------------
+special_thanks:
+  sections:
+    - { title: "ElevateUT Board of Directors", body: "Scott Belchak • Kami Belchak • John Sheen • Brodie Duncan • Nick Jennings • Sean Kelley • Jesse Semchuck" }
+    - { title: "Wasatch Mountain State Park",  body: "Kathy Donnell • Jonathan Hunt • Thomas Halladay" }
+    - { title: "Course Sponsor",               body: "HOWMZ — Cole Leesnitzer" }
+    - { title: "Course Crew",                  body: "Chip McMullin • Jumbo" }
+    - { title: "Design",                       body: "Brodie Duncan / FlyDsgn" }
+
+# ----------------------------------------------------------------------------
+# Back cover
+# ----------------------------------------------------------------------------
+back_cover:
+  headline: "See you out there."
+  subhead: "The Wasatch Wunder • Midway, UT"
+  url: "https://elevateut.org"
+  url_text: "elevateut.org"
+
+# ----------------------------------------------------------------------------
+# Custom slides — drop in raw HTML for anything that doesn't fit a standard
+# section. Keyed by slide id; `after` controls where in the order it lands.
+# Use sparingly — most needs should fit the standard sections.
+# ----------------------------------------------------------------------------
+custom_slides:
+  uswdgc_volunteers:
+    after: sponsors
+    background: "#003462"
+    html: |
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:calc(100vh - 60px); gap:14px; padding-top:10px;">
+        <img src="images/uswdgc-logo-white.png" style="max-width:300px;">
+        <div style="font-size:28px; font-weight:900; text-transform:uppercase; color:#FABE28; margin-top:4px;">25th Anniversary</div>
+        <p style="font-size:21px; line-height:1.4; color:rgba(255,255,255,0.92); margin:0;">US Women's Disc Golf Championships</p>
+        <p style="font-size:17px; line-height:1.4; color:rgba(255,255,255,0.78); margin:0;">Salt Lake City • July 16–19 • 350+ players • 14 countries</p>
+        <div style="width:60px; height:2px; background:#FABE28; margin:4px auto;"></div>
+        <div style="font-size:30px; font-weight:900; text-transform:uppercase; color:#ffffff;">We Need Volunteers</div>
+        <p style="font-size:19px; line-height:1.45; color:rgba(255,255,255,0.88); margin:0; max-width:380px;">Help us run the biggest women's disc golf event in the world. Spotters, marshals, registration, merch — across all four courses.</p>
+        <a href="https://elevateut.org/volunteer/uswdgc" target="_blank" rel="noopener" style="font-size:21px; font-weight:700; color:#1FD2C2; margin:8px 0 0; text-decoration:underline;">elevateut.org/volunteer/uswdgc</a>
+        <p style="font-size:13px; color:rgba(255,255,255,0.55); margin:0;">Jul 10–12 setup • Jul 13–15 events • Jul 16–19 rounds</p>
+      </div>

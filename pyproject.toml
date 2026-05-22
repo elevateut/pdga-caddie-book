@@ -1,0 +1,66 @@
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pdga-caddie-book"
+version = "0.1.0"
+description = "Generate phone-optimized caddie books (reveal.js slides + printable scorecards) for PDGA-sanctioned disc golf tournaments. Pulls canonical layouts from PDGA Tournament Manager."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [
+    { name = "ElevateUT Disc Golf", email = "scott@elevateut.com" },
+]
+keywords = ["disc-golf", "pdga", "tournament", "caddie-book", "reveal-js"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Games/Entertainment",
+]
+dependencies = [
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+pdf = ["playwright>=1.40"]
+dev = [
+    "pytest>=7",
+    "ruff>=0.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/elevateut/pdga-caddie-book"
+Issues = "https://github.com/elevateut/pdga-caddie-book/issues"
+Source = "https://github.com/elevateut/pdga-caddie-book"
+
+[project.scripts]
+pdga-caddie-book = "pdga_caddie_book.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pdga_caddie_book"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/pdga_caddie_book",
+    "/templates",
+    "/examples",
+    "/docs",
+    "/README.md",
+    "/LICENSE",
+]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]

@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+.eggs/
+build/
+dist/
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# Skill seed (kept locally during initial port, do not ship)
+.original-skill-seed/
+
+# Generated output — users keep these locally per event
+**/output/
+**/build-output/
+*-slides.html
+scorecard-*.html
+*.pdf.tmp
+
+# Local fixtures — example layouts.json is committed; ad-hoc fetches are not
+**/layouts-cache.json
+**/pdga-cache/
+
+# Secrets — none should ever land here, but belt + suspenders
+.env
+.env.*
+!.env.example
