@@ -88,88 +88,14 @@ pools:
 # Keyed by LayoutID → display_order (string) → field overrides.
 # Any field omitted falls back to the PDGA value.
 #
-# Useful when:
-#   - PDGA notes are terse and you want richer ground rules
-#   - Local knowledge (mandos, hazard flag colors, etc.) isn't in TM
-#   - You want pool-specific notes for the same physical hole
+# WUNDERMENT 26 POLICY: PDGA Tournament Manager is the canonical source for
+# all hole text. We DO NOT override notes here — if a ground rule changes,
+# the TD updates it in PDGA TM and the caddie books pick it up on the next
+# `pdga-caddie-book pull`. The override mechanism stays in the package for
+# other events that need it.
 # ----------------------------------------------------------------------------
-hole_overrides:
-  # ---------------- A Pool — Day 1 (LayoutID 758489) ----------------
-  "758489":
-    "1":  { notes: "A Position Round 1" }
-    "2":  { notes: "Short Pad to Hazard Island. Logs = hazard boundary" }
-    "3":  { notes: "Across the road. OB left and long of basket (flags)" }
-    "4":  { notes: "OB left side over creek bed" }
-    "5":  { notes: "Road and beyond OB. OB left side of fairway and green. 10A flags OB" }
-    "6":  { notes: "A position both rounds" }
-    "7":  { notes: "Long Pad → Long Basket on hill. Substation OB" }
-    "8":  { notes: "B Position both rounds. Hazard island (rope + flags)" }
-    "9":  { notes: "Dual mandos. DZ between mandos. OB right past logs and left. Creek bed: optional relief straight back toward tee, no penalty" }
-    "10": { notes: "B position Day 1 from the deck. OB left side of fairway (marked with flags). Creek bed: optional relief straight back toward tee, no penalty" }
-    "11": { notes: "C position all rounds. OB left guarding hole 15" }
-    "12": { notes: "Mando LEFT — must throw past the mando trees. OB upper right beyond basket. Road + gravel lot OB. DZ marked C/DZ (white flag) — same spot as C Pool's tee" }
-    "13": { notes: "Road OB. Flags protecting 17 OB" }
-    "14": { notes: "HIKERS HAVE RIGHT OF WAY. All asphalt OB. 2m relief from Guardsman's" }
-    "15": { notes: "A Pool plays the WHITE flags as hazard island. OB pocket by tee" }
-    "16": { notes: "Mando left of tree in woods. Road OB. 2m relief from Guardsman's" }
-    "17": { notes: "Mando LEFT of the dead tree. HIKERS HAVE RIGHT OF WAY" }
-    "18": { notes: "Long Pad. Road and beyond on left OB. Creek OB if running" }
-    "19": { notes: "B position. OB plays as flagged river. All OB shots (tee or otherwise) proceed to DZ with one-stroke penalty" }
-    "20": { notes: "Left position both days" }
-    "21": { notes: "B position Day 1. OB flags left side + OB right side by yurt" }
+hole_overrides: {}
 
-  # ---------------- A Pool — Day 2 (LayoutID 758491) ----------------
-  "758491":
-    "1":  { notes: "B Position Round 2" }
-    "2":  { notes: "Long Pad" }
-    "3":  { notes: "Across the road. OB left and long of basket (flags)" }
-    "4":  { notes: "OB left side over creek bed" }
-    "5":  { notes: "Road and beyond OB. OB left side of fairway and green. 10A flags OB" }
-    "6":  { notes: "A position both rounds" }
-    "7":  { notes: "Long Pad → Long Basket on hill. Substation OB" }
-    "8":  { notes: "B Position both rounds. Hazard island (rope + flags)" }
-    "9":  { notes: "Dual mandos. DZ between mandos. OB right past logs and left. Creek bed: optional relief straight back toward tee, no penalty" }
-    "10": { notes: "A position Day 2 from the deck. OB left side of fairway (marked with flags). Creek bed: optional relief straight back toward tee, no penalty" }
-    "11": { notes: "C position all rounds. OB left guarding hole 15" }
-    "12": { notes: "Mando LEFT — must throw past the mando trees. OB upper right beyond basket. Road + gravel lot OB. DZ marked C/DZ (white flag) — same spot as C Pool's tee" }
-    "13": { notes: "Road OB. Flags protecting 17 OB" }
-    "14": { notes: "HIKERS HAVE RIGHT OF WAY. All asphalt OB. 2m relief from Guardsman's" }
-    "15": { notes: "COMBO: Hole 2 tee → Hole 3 basket. Mando left of tree. DZ. Road OB. NOTE: Hole 2 hazard island is NOT in play for this round" }
-    "16": { notes: "Mando LEFT of the dead tree. HIKERS HAVE RIGHT OF WAY" }
-    "17": { notes: "Long Pad. Road and beyond on left OB. Creek OB if running" }
-    "18": { notes: "B position. OB plays as flagged river. All OB shots (tee or otherwise) proceed to DZ with one-stroke penalty" }
-    "19": { notes: "Left position both days" }
-    "20": { notes: "A position Day 2. OB flags left + OB right by yurt" }
-
-  # ---------------- B Pool — Day 1 (LayoutID 758787) ----------------
-  "758787":
-    "1":  { notes: "A Position Round 1" }
-    "15": { notes: "B Pool plays the GREEN flags as hazard island. OB pocket by tee" }
-    "17": { notes: "Mando LEFT of the dead tree. HIKERS HAVE RIGHT OF WAY" }
-
-  # ---------------- B Pool — Day 2 (LayoutID 758789) ----------------
-  "758789":
-    "15": { notes: "COMBO: Hole 2 tee → Hole 3 basket. Mando left of tree. DZ. Road OB. NOTE: Hole 2 hazard island is NOT in play for this round" }
-    "16": { notes: "Mando LEFT of the dead tree. HIKERS HAVE RIGHT OF WAY" }
-
-  # ---------------- C Pool — Both Days (LayoutID 758495) ----------------
-  "758495":
-    "6":  { notes: "C Pool plays from the Short Pad (DZ). Creek bed: optional relief straight back toward tee, no penalty" }
-    "7":  { notes: "B position from short pad. OB left (flags). Creek bed: optional relief straight back toward tee, no penalty" }
-    "9":  { notes: "Tee marked C/DZ (white flag). OB gravel lot right" }
-    "12": { notes: "All pools play long pad. Ignore all flags" }
-    "13": { notes: "Mando left of tree. DZ" }
-    "14": { notes: "Mando LEFT of the dead tree. HIKERS HAVE RIGHT OF WAY" }
-    "15": { notes: "Short pad to main basket. Mandatory relief from creek" }
-    "16": { notes: "B position. Par 4. River plays as flagged OB — if disc lands in flagged river, proceed to DZ with no penalty" }
-
-# ----------------------------------------------------------------------------
-# Hole images — tee sign photos / map JPGs shown on hole slides.
-#
-# Default: looks for `{base_dir}/{default_pattern}` per course hole label.
-# Override: per_pool / per_layout overrides for specific holes.
-# Holes in `no_map_holes` show a "No map available" placeholder.
-# ----------------------------------------------------------------------------
 images:
   base_dir: images
   # `{hole}` is the course hole number; `{hole:02d}` zero-pads to 2 digits
