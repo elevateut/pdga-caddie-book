@@ -1,11 +1,12 @@
 """Command-line entry for pdga-caddie-book.
 
 Subcommands:
-  pull        — fetch all layouts for a PDGA tournament ID
-  init        — scaffold a new event directory
-  build       — render the reveal.js caddie books for every pool
-  scorecards  — render printable duplex scorecards
-  pdf         — export HTML files to PDF via Playwright
+  pull             — fetch all layouts for a PDGA tournament ID
+  init             — scaffold a new event directory
+  build            — render the reveal.js caddie books for every pool
+  scorecards       — render printable duplex scorecards
+  spectator-guide  — render a spectator guide
+  pdf              — export HTML files to PDF via Playwright
 """
 
 from __future__ import annotations
@@ -113,6 +114,20 @@ def cmd_scorecards(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_guide(args: argparse.Namespace) -> int:
+    from . import guide_builder
+
+    written = guide_builder.build_event_guides(
+        event_yaml_path=args.event,
+        output_dir=args.output,
+        guide_key=args.guide_key,
+        pdga_layouts_path=args.layouts,
+    )
+    for p in written:
+        print(f"Wrote {p}")
+    return 0
+
+
 def cmd_pdf(args: argparse.Namespace) -> int:
     from . import pdf
 
@@ -154,6 +169,18 @@ def build_parser() -> argparse.ArgumentParser:
     ss.add_argument("--layouts", help="Path to cached layouts.json")
     ss.add_argument("--pool", action="append", help="Build only this pool (can repeat)")
     ss.set_defaults(func=cmd_scorecards)
+
+    sg = sub.add_parser("spectator-guide", help="Render a spectator guide")
+    sg.add_argument("event", help="Path to event.yaml")
+    sg.add_argument("--output", "-o", default="./output", help="Output directory (default: ./output)")
+    sg.add_argument("--layouts", help="Path to cached layouts.json")
+    sg.set_defaults(func=cmd_guide, guide_key="spectator")
+
+    sc_g = sub.add_parser("competitor-guide", help="Render a competitor guide")
+    sc_g.add_argument("event", help="Path to event.yaml")
+    sc_g.add_argument("--output", "-o", default="./output", help="Output directory (default: ./output)")
+    sc_g.add_argument("--layouts", help="Path to cached layouts.json")
+    sc_g.set_defaults(func=cmd_guide, guide_key="competitor")
 
     sd = sub.add_parser("pdf", help="Export HTML files to PDF via Playwright")
     sd.add_argument("files", nargs="+", help="HTML files to export")

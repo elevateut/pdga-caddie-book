@@ -36,6 +36,7 @@ def _single_card(event: Event, pool_key: str, day_index: int) -> str:
 
     hole_num_cells = "".join(f'<th class="hole-col">{h.get("Label", o)}</th>' for o, h in holes)
     tee_cells = "".join(f'<td class="info-cell tee-cell">{h.get("Tee", "")}</td>' for _, h in holes)
+    target_cells = "".join(f'<td class="info-cell target-cell">{h.get("Target", "")}</td>' for _, h in holes)
     par_cells = "".join(f'<td class="info-cell par-cell">{h.get("Par", "")}</td>' for _, h in holes)
     dist_cells = "".join(f'<td class="info-cell dist-cell">{h.get("Length", "")}</td>' for _, h in holes)
 
@@ -55,11 +56,12 @@ def _single_card(event: Event, pool_key: str, day_index: int) -> str:
   </div>
   <table>
     <tr>
-      <th class="label-col" rowspan="3"></th>
+      <th class="label-col" rowspan="4"></th>
       {hole_num_cells}
-      <th class="total-header" rowspan="3">Tot</th>
+      <th class="total-header" rowspan="4">Tot</th>
     </tr>
     <tr class="info-row">{tee_cells}</tr>
+    <tr class="info-row">{target_cells}</tr>
     <tr class="info-row">{par_cells}</tr>
     <tr class="dist-row">
       <th class="name-header">Player</th>
@@ -151,6 +153,7 @@ def _full_page(event: Event, pool_key: str, day_index: int) -> str:
     .dist-row td, .dist-row th {{ height: 16px; }}
     .info-cell {{ padding: 1px 0; font-size: 8px; background: {light}; }}
     .tee-cell {{ font-size: 7px; font-weight: 600; color: #555; text-transform: uppercase; }}
+    .target-cell {{ font-size: 8px; font-weight: 700; color: {pc["bg"]}; text-transform: uppercase; }}
     .par-cell {{ font-weight: 800; color: {pc["bg"]}; font-size: 9px; }}
     .dist-cell {{ font-size: 7px; color: #666; }}
     .name-header {{ width: 160px; min-width: 160px; background: {pc["bg"]}; color: #fff; font-weight: 700; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 6px; border-color: {pc["bg"]}; text-align: left; }}

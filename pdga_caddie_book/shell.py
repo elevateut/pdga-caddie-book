@@ -29,6 +29,29 @@ def _font_faces(event: Event) -> str:
     return "\n    ".join(lines)
 
 
+def render_guide(event: Event, guide_key: str, slides_html: str) -> str:
+    """Render the outer HTML shell for a guide (spectator, competitor, etc.)."""
+    gc = event.pool_color(guide_key)
+    cfg = event.guide_config(guide_key) or {}
+    em = event.event_meta
+    deploy = event.raw.get("deploy") or {}
+    url_base = (deploy.get("url_base") or "").rstrip("/")
+
+    guide_title = cfg.get("title", guide_key.title() + " Guide")
+    title = f'{em.get("name", "")} — {guide_title}'
+    description = cfg.get("description") or em.get("description") or em.get("tagline") or ""
+    social_desc = cfg.get("description") or em.get("tagline") or em.get("description") or ""
+
+    og_image = cfg.get("og_image") or ""
+    og_url = ""
+    if url_base:
+        og_url = f"{url_base}/{guide_key}-guide"
+        if og_image:
+            og_image = f"{url_base}/{og_image}"
+
+    return _render_shell(event, gc, title, description, social_desc, og_image, og_url, slides_html)
+
+
 def render(event: Event, pool_key: str, slides_html: str) -> str:
     pc = event.pool_color(pool_key)
     em = event.event_meta
@@ -44,6 +67,20 @@ def render(event: Event, pool_key: str, slides_html: str) -> str:
     description = em.get("description") or em.get("tagline") or ""
     social_desc = em.get("tagline") or em.get("description") or ""
 
+    full_og_image = f"{url_base}/{og_image}" if og_image and url_base else og_image
+    return _render_shell(event, pc, title, description, social_desc, full_og_image, og_url, slides_html)
+
+
+def _render_shell(
+    event: Event,
+    color: dict[str, str],
+    title: str,
+    description: str,
+    social_desc: str,
+    og_image: str,
+    og_url: str,
+    slides_html: str,
+) -> str:
     font_family = event.font_family_css()
     font_faces = _font_faces(event)
 
@@ -51,7 +88,7 @@ def render(event: Event, pool_key: str, slides_html: str) -> str:
     if og_image and og_url:
         og_meta = f"""  <meta property="og:title" content="{title}">
   <meta property="og:description" content="{social_desc}">
-  <meta property="og:image" content="{url_base}/{og_image}">
+  <meta property="og:image" content="{og_image}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="{og_url}">
@@ -59,7 +96,7 @@ def render(event: Event, pool_key: str, slides_html: str) -> str:
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{title}">
   <meta name="twitter:description" content="{social_desc}">
-  <meta name="twitter:image" content="{url_base}/{og_image}">"""
+  <meta name="twitter:image" content="{og_image}">"""
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -86,8 +123,8 @@ def render(event: Event, pool_key: str, slides_html: str) -> str:
       -webkit-overflow-scrolling: touch;
     }}
     .reveal .slides p {{ line-height: 1.45; }}
-    .reveal .progress {{ color: {pc["accent"]}; height: 4px; }}
-    .reveal .controls {{ color: {pc["accent"]}; bottom: 4px !important; right: 4px !important; }}
+    .reveal .progress {{ color: {color["accent"]}; height: 4px; }}
+    .reveal .controls {{ color: {color["accent"]}; bottom: 4px !important; right: 4px !important; }}
     .reveal .controls button {{ width: 32px; height: 32px; }}
     .reveal p {{ margin: 0; }}
     .reveal .slides section::-webkit-scrollbar {{ display: none; }}
@@ -120,5 +157,7 @@ def render(event: Event, pool_key: str, slides_html: str) -> str:
       Reveal.layout();
     }});
   </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>"""

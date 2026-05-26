@@ -178,9 +178,16 @@ class Event:
 
     # ---- color helpers ----
 
-    def pool_color(self, pool_key: str) -> dict[str, str]:
-        c = (self.pools.get(pool_key) or {}).get("color") or {}
+    def pool_color(self, key: str) -> dict[str, str]:
+        """Color scheme for a pool or guide key."""
+        c = (self.pools.get(key) or {}).get("color") or {}
+        if not c:
+            c = (self.guide_config(key) or {}).get("color") or {}
         return {**DEFAULT_POOL_COLOR, **c}
+
+    def guide_config(self, guide_key: str) -> dict[str, Any] | None:
+        """Return the config dict for a guide (spectator, competitor, etc.)."""
+        return (self.raw.get("guides") or {}).get(guide_key)
 
 
 # ---------------------------------------------------------------------------
@@ -218,15 +225,12 @@ def load_event(
     if pdga_layouts_path and os.path.exists(pdga_layouts_path):
         pdga = load_pdga_layouts(pdga_layouts_path)
     else:
-        # Fetch live
-        from . import pdga as pdga_mod
-
         tournament_id = (raw.get("event") or {}).get("pdga_tournament_id")
         if not tournament_id:
-            raise SystemExit(
-                "No PDGA layouts cached and `event.pdga_tournament_id` not set in event.yaml — "
-                "either set it or provide --layouts <file>"
-            )
-        pdga = pdga_mod.fetch_layouts(str(tournament_id))
+            # No PDGA data needed — guide-only builds work without layouts
+            pdga = {"layouts": {}}
+        else:
+            from . import pdga as pdga_mod
+            pdga = pdga_mod.fetch_layouts(str(tournament_id))
 
     return Event(raw=raw, pdga=pdga, base_dir=base_dir)

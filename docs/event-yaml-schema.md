@@ -10,7 +10,7 @@ Everything is optional unless marked **required**. The builder degrades graceful
 event: { ... }            # Tournament identity
 brand: { ... }            # Logos + typography
 deploy: { ... }           # Hosting URLs + OG image patterns
-pools: { A: { ... }, B: { ... }, ... }  # REQUIRED — at least one
+pools: { A: { ... }, B: { ... }, ... }  # Pool definitions (caddie books)
 hole_overrides: { ... }   # Per-hole text/par/length overrides
 images: { ... }           # Hole image resolution rules
 schedule: [ ... ]         # Multi-day event schedule
@@ -24,6 +24,7 @@ special_thanks: { ... }
 back_cover: { ... }
 custom_slides: { ... }    # Raw-HTML slide injection
 slide_order: [ ... ]      # Override the default slide order
+guides: { ... }           # Spectator / competitor guides
 ```
 
 ---
@@ -66,7 +67,9 @@ deploy:
   og_image_pattern: "images/og-pool-{pool}.jpg"
 ```
 
-## `pools` — Pool definitions **(required)**
+## `pools` — Pool definitions
+
+Required for caddie books. Can be empty (`pools: {}`) if you're only building guides.
 
 The keys (`A`, `B`, `C`, ...) determine URL slugs (`pool-a-slides.html`) and the highlighted pool in the assignment overview.
 
@@ -287,8 +290,132 @@ slide_order:
 
 ---
 
+## `guides` — Spectator and competitor guides
+
+Guides are per-event (not per-pool). They produce a single HTML slide deck for spectators, competitors, or any other audience. Guides reuse shared sections (`schedule`, `parking`, `camping`, `sponsors`, `special_thanks`, `back_cover`) and add guide-specific content.
+
+Build with:
+```bash
+pdga-caddie-book spectator-guide event.yaml -o output/
+pdga-caddie-book competitor-guide event.yaml -o output/
+```
+
+```yaml
+guides:
+  spectator:
+    title: "Spectator Guide"                      # Shown on cover + HTML title
+    subtitle: "25th Anniversary • Salt Lake City"  # Cover subtitle
+    description: "Your guide to watching..."       # OG/meta description
+    og_image: images/spectator-og.jpg              # Social preview image
+    color:
+      bg: "#003462"
+      accent: "#FABE28"
+      light: "#E8EEF5"
+
+    # -- Welcome slide --
+    welcome:
+      eyebrow: "Welcome"
+      headline: "Welcome to the Event"
+      paragraphs:
+        - "First paragraph..."
+        - "Second paragraph..."
+
+    # -- Venue map --
+    venue_map:
+      eyebrow: "Event Venues"
+      headline: "Four Courses, One Valley"
+      map: images/valley-map.png
+      body: "Optional descriptive text below the map."
+
+    # -- Spectator etiquette --
+    etiquette:
+      eyebrow: "Spectator Etiquette"
+      headline: "How to Be a Great Gallery"
+      callout:                                      # Optional alert box above rules
+        headline: "No spectator ropes"
+        body: "Maintain 6 feet from all OB ropes."
+      items:
+        - { label: "Quiet on the tee", text: "No talking during throws" }
+        - { label: "Stay behind players", text: "Gallery follows behind" }
+
+    # -- How to follow play --
+    how_to_watch:
+      eyebrow: "Following Play"
+      headline: "How to Watch"
+      items:
+        - { label: "Lead card", text: "Top-scoring group with full gallery" }
+        - { label: "Live scoring", text: "Follow on UDisc Live" }
+
+    # -- Courses overview --
+    courses_headline: "The Courses"
+    courses:
+      - name: "Brighton Resort"
+        description: "Alpine mountain course at 9,000 ft."
+        image: images/brighton.jpg                  # Optional thumbnail
+        url: "https://example.com/caddy/brighton/a"
+        url_text: "View Caddie Book"
+
+    # -- Additional info slides (any number) --
+    info_slides:
+      - eyebrow: "Altitude Advisory"
+        headline: "9,000 Feet"
+        image: images/elevation-guide.png
+        paragraphs: ["Brighton sits at 8,755 ft..."]
+        items:
+          - { label: "Hydrate", text: "Drink twice as much water" }
+        background: "#ffffff"                       # Optional bg color
+
+    # -- Food & drink --
+    food_drink:
+      eyebrow: "Food & Drink"
+      headline: "Food & Beverage"
+      items:
+        - { label: "Beer", text: "Uinta Brewing" }
+
+    # -- Local rules / know-before-you-go --
+    local_rules:
+      eyebrow: "Know Before You Go"
+      headline: "Important Info"
+      callout:
+        headline: "No dogs in the canyon"
+        body: "Watershed protection law."
+      items:
+        - { label: "Tickets", text: "VIP and GA day passes available" }
+
+    # -- Override default slide order (optional) --
+    slide_order:
+      - guide_cover
+      - welcome
+      - schedule
+      - venue_map
+      - etiquette
+      - how_to_watch
+      - courses
+      - info_slides
+      - parking
+      - camping
+      - food_drink
+      - local_rules
+      - sponsors
+      - special_thanks
+      - back_cover
+```
+
+Default spectator guide slide order:
+```
+guide_cover, welcome, schedule, venue_map, etiquette, how_to_watch,
+courses, info_slides, parking, camping, food_drink, local_rules,
+sponsors, special_thanks, back_cover
+```
+
+All sections are optional — omit any block and its slide is skipped. `schedule`, `parking`, `camping`, `sponsors`, `special_thanks`, and `back_cover` are shared with caddie books (defined at the top level of event.yaml, not inside `guides:`).
+
+See [`examples/uswdgc-2026/event.yaml`](../examples/uswdgc-2026/event.yaml) for a full working example.
+
+---
+
 ## Slide builders
 
-Each top-level section maps to a builder in [`pdga_caddie_book/slides.py`](../pdga_caddie_book/slides.py). To customize the visual design, edit that file directly — there's intentionally no theming layer beyond pool colors. The intent is that visual identity comes from `brand` + `pools.*.color`; structural slide design is the package's responsibility.
+Each top-level section maps to a builder in [`pdga_caddie_book/slides.py`](../pdga_caddie_book/slides.py) (caddie books) or [`pdga_caddie_book/guide_slides.py`](../pdga_caddie_book/guide_slides.py) (guides). To customize the visual design, edit those files directly — there's intentionally no theming layer beyond pool/guide colors. The intent is that visual identity comes from `brand` + `pools.*.color` / `guides.*.color`; structural slide design is the package's responsibility.
 
 If you need fundamentally different slide layouts, file an issue or PR — the builders are small and self-contained.

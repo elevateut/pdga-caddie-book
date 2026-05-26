@@ -4,7 +4,7 @@ How Claude Code should behave in the `pdga-caddie-book` repo.
 
 ## What this is
 
-Open-source tool that generates phone-optimized caddie books (reveal.js slide decks) and printable duplex scorecards for PDGA-sanctioned disc golf tournaments. Driven by a single `event.yaml` per event, plus canonical layout data pulled from PDGA Tournament Manager via public endpoints.
+Open-source tool that generates phone-optimized caddie books (reveal.js slide decks), printable duplex scorecards, and event guides (spectator, competitor) for PDGA-sanctioned disc golf tournaments. Driven by a single `event.yaml` per event, plus canonical layout data pulled from PDGA Tournament Manager via public endpoints.
 
 The reference event is Wunderment 26 (`examples/wunderment-26/`) — ElevateUT Disc Golf's tournament at The Wasatch Wunder in Midway, UT.
 
@@ -23,6 +23,7 @@ PDGA Tournament Manager → pdga.fetch_layouts(id) → layouts.json
                                                      ↓
                               builder.build_event(...) → pool-{X}-slides.html
                               scorecards.build_event(...) → scorecard-{pool}-day{N}.html
+                              guide_builder.build_event_guides(...) → spectator-guide.html
                                                      ↓
                                           pdf.export_pdfs(...) → PDF (via Playwright)
 ```
@@ -31,8 +32,10 @@ Key modules:
 - `pdga_caddie_book/pdga.py` — public-endpoint scraper (no auth, no app token)
 - `pdga_caddie_book/config.py` — yaml loader + PDGA merge + hole/image resolvers
 - `pdga_caddie_book/slides.py` — one fn per slide type, returns reveal.js `<section>` markup
+- `pdga_caddie_book/guide_slides.py` — slide builders for event guides (spectator, competitor)
+- `pdga_caddie_book/guide_builder.py` — guide orchestrator, reuses shared slides + guide-specific ones
 - `pdga_caddie_book/shell.py` — outer reveal.js HTML/CSS/init
-- `pdga_caddie_book/builder.py` — orchestrator, default slide order + custom slide injection
+- `pdga_caddie_book/builder.py` — caddie book orchestrator, default slide order + custom slide injection
 - `pdga_caddie_book/scorecards.py` — printable duplex scorecards w/ rotated single-column back
 - `pdga_caddie_book/pdf.py` — Playwright wrapper
 
@@ -59,6 +62,9 @@ python3 -m pdga_caddie_book pull 101284 -o examples/wunderment-26/layouts.json -
 python3 -m pdga_caddie_book build examples/wunderment-26/event.yaml -o examples/wunderment-26/build-output
 python3 -m pdga_caddie_book scorecards examples/wunderment-26/event.yaml -o examples/wunderment-26/build-output
 python3 -m pdga_caddie_book pdf examples/wunderment-26/build-output/scorecard-*.html
+
+# Build USWDGC spectator guide (guide-only, no PDGA layouts needed)
+python3 -m pdga_caddie_book spectator-guide examples/uswdgc-2026/event.yaml -o examples/uswdgc-2026/build-output
 ```
 
 Wunder visual assets (hole photos, brand logos, fonts) live at `/Users/scott/ElevateUT_501c3/Events/wunderment-26/caddie-book/` and are NOT in the public repo. Symlink them into `examples/wunderment-26/{images,fonts}` to make the example build locally.
@@ -81,6 +87,8 @@ Live URLs:
 - https://elevateut.org/caddy/wunderment/a
 - https://elevateut.org/caddy/wunderment/b
 - https://elevateut.org/caddy/wunderment/c
+
+Guides deploy the same way — copy the `spectator-guide.html` output to the public directory.
 
 ## Code style
 

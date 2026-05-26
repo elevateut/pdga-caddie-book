@@ -19,7 +19,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 230,
-          "Notes": "Hole 9: A Pool - A Position Round 1."
+          "Notes": ""
         },
         "2": {
           "Label": "10",
@@ -27,7 +27,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 280,
-          "Notes": "Hole 10: A Pool - Short Pad to Hazard Island.  Anything outside of the logs surrounding the green is hazard.  Fence behind basket and beyond plays OB."
+          "Notes": "Short Pad to Hazard Island.  Anything outside of the logs surrounding the green is hazard.  Fence behind basket and beyond plays OB."
         },
         "3": {
           "Label": "10A",
@@ -35,7 +35,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 235,
-          "Notes": "Hole 10A: All Pools - Short Pad.  OB left and deep of basket.  Marked with flags."
+          "Notes": "Short Pad.  OB left and deep of basket.  Marked with flags."
         },
         "4": {
           "Label": "10B",
@@ -43,7 +43,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 140,
-          "Notes": "Hole 10B: OB left side over the creek bed."
+          "Notes": "OB left side over the creek bed."
         },
         "5": {
           "Label": "10C",
@@ -51,7 +51,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 301,
-          "Notes": "Hole 10C: Road and beyond plays out of bounds.  Flags from 10A plays out of bounds."
+          "Notes": "Road and beyond plays out of bounds.  Flags from 10A plays out of bounds."
         },
         "6": {
           "Label": "11",
@@ -59,7 +59,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 213,
-          "Notes": "Hole 11: Both rounds: A position"
+          "Notes": "Both rounds: A position"
         },
         "7": {
           "Label": "12",
@@ -67,7 +67,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 345,
-          "Notes": "Hole 12: A Pool - Long Pad to Long Basket on the hill.  Electrical substation is out of bounds."
+          "Notes": "Long Pad to Long Basket on the hill.  Electrical substation is out of bounds."
         },
         "8": {
           "Label": "13",
@@ -75,7 +75,7 @@
           "Target": "B",
           "Par": 3,
           "Length": 185,
-          "Notes": "Hole 13: Both Rounds: B Position.  Hazard island marked by rope and flags."
+          "Notes": "Hazard island marked by rope and flags."
         },
         "9": {
           "Label": "14",
@@ -83,7 +83,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 240,
-          "Notes": "Hole 14: Mandatory left of tree on right.  Mandatory right of tree on left.  DZ between Mando's if either is missed.  OB flags behind basket on the inside of the logs. Past logs, right side and left side OB.  Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the backet, until you have good footing, with no penalty."
+          "Notes": "Mandatory left of tree on right.  Mandatory right of tree on left.  DZ between Mando's if either is missed.  White OB flags behind basket on the inside of the logs. Past logs, right side and left side OB.  Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the backet, until you have good footing, with no penalty."
         },
         "10": {
           "Label": "15",
@@ -91,7 +91,7 @@
           "Target": "B",
           "Par": 3,
           "Length": 299,
-          "Notes": "Hole 15: A Pool - Round 1 play B position from the deck.  Out of bounds left side of fairway, marked with flags.  Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the backet, until you have good footing, with no penalty."
+          "Notes": "Out of bounds left side of fairway, marked with flags.  Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the backet, until you have good footing, with no penalty."
         },
         "11": {
           "Label": "16",
@@ -99,7 +99,7 @@
           "Target": "C",
           "Par": 3,
           "Length": 280,
-          "Notes": "Hole 16: C Position both days.  OB on left side, guarding hole 15."
+          "Notes": "OB on left side, guarding hole 15."
         },
         "12": {
           "Label": "17",
@@ -107,7 +107,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 269,
-          "Notes": "Hole 17: Road plays out of bounds.  Gravel parking lot plays out of bounds.  Mandatory right of tree on left.  Green flags mark the mando line on the left.  If any shot passes that line, mando has been missed, proceed to the drop zone.  Drop zone next to Mandatory if missed.  Mandatory left of tree on right.  Drop zone next to Mandatory if missed.  OB on left (protecting 18) after the mando on the left."
+          "Notes": "Road plays out of bounds.  Gravel parking lot plays out of bounds.  Mandatory right of tree on left.  Green flags mark the mando line on the left.  If any shot passes that line, mando has been missed, proceed to the drop zone.  Drop zone right fairway marked by white flags f Mandatory if missed.  Mandatory left of tree on right.   OB on left (protecting 18) after the mando on the left."
         },
         "13": {
           "Label": "18",
@@ -115,7 +115,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 230,
-          "Notes": "Hole 18: Road and Beyond plays out of bounds.  Flags protecting 17 out of bounds."
+          "Notes": "Road and Beyond plays out of bounds."
         },
         "14": {
           "Label": "1",
@@ -123,7 +123,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 289,
-          "Notes": "Hole 1: CAUTION: Hikers have right of way!  Wait until fairway is completely clear.  OB: All Asphalt roads.  Take 2 meter relief from Guardsman's."
+          "Notes": "CAUTION: Hikers have right of way!  Wait until fairway is completely clear.  OB: All Asphalt roads.  Take 2 meter relief from Guardsman's."
         },
         "15": {
           "Label": "2",
@@ -131,7 +131,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 241,
-          "Notes": "Hole 2: A Pool - Play Inner Island as hazard island.  Marked with white flags.  Out of bounds pocket by tee."
+          "Notes": "Play Inner Island as hazard island.  Marked with white flags.  Out of bounds pocket by tee."
         },
         "16": {
           "Label": "3",
@@ -139,7 +139,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 236,
-          "Notes": "Hole 3: Mandatory Left of tree in the woods.  Road and beyond plays out of bounds.  Take 2 meter relief from Guardsman's."
+          "Notes": "Mandatory Left of tree in the woods.  Road and beyond plays out of bounds.  Take 2 meter relief from Guardsman's."
         },
         "17": {
           "Label": "4",
@@ -147,7 +147,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 170,
-          "Notes": "Hole 4: CAUTION: Hikers have right of way!  Wait until fairway is completely clear. Play to new longer basket."
+          "Notes": "CAUTION: Hikers have right of way!  Wait until fairway is completely clear. Play to new longer basket."
         },
         "18": {
           "Label": "5",
@@ -155,7 +155,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 290,
-          "Notes": "Hole 5: A Pool - Long Pad.  Road and beyond on left OB.  Water plays as normal OB rules."
+          "Notes": "Road and beyond on left OB.  Water plays as normal OB rules."
         },
         "19": {
           "Label": "6",
@@ -163,7 +163,7 @@
           "Target": "B",
           "Par": 3,
           "Length": 263,
-          "Notes": "Hole 6: A Pool - Play's to B position. Creek is OB river (marked with red flags).  Any shot OB proceeds to the mandatory drop zone."
+          "Notes": "Creek is OB river (marked with red flags).  Any shot OB proceeds to the mandatory drop zone."
         },
         "20": {
           "Label": "7",
@@ -171,7 +171,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 308,
-          "Notes": "Hole 7: All Pools - Left position both days."
+          "Notes": "Left position both days."
         },
         "21": {
           "Label": "8",
@@ -179,7 +179,7 @@
           "Target": "B",
           "Par": 3,
           "Length": 286,
-          "Notes": "Hole 8: A Pool - Round 1 Plays to B position on the right.  Both Days: Out of bounds marked by flags on the left side of fairway.  OB right side of fairway by the yurt."
+          "Notes": "Out of bounds marked by flags on the left side of fairway.  OB right side of fairway by the yurt."
         }
       }
     },
@@ -200,7 +200,7 @@
           "Target": "B",
           "Par": 3,
           "Length": 170,
-          "Notes": "Hole 9: A Pool -B Position Round 2."
+          "Notes": "B Position Round 2."
         },
         "2": {
           "Label": "10",
@@ -208,7 +208,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 420,
-          "Notes": "Hole 10: A Pool - Long Pad. Fence behind basket and beyond plays OB."
+          "Notes": "Long Pad. Fence behind basket and beyond plays OB."
         },
         "3": {
           "Label": "10A",
@@ -216,7 +216,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 235,
-          "Notes": "Hole 10A: All Pools - Short Pad.  OB left and deep of basket.  Marked with flags."
+          "Notes": "Short Pad.  OB left and deep of basket.  Marked with flags."
         },
         "4": {
           "Label": "10B",
@@ -224,7 +224,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 140,
-          "Notes": "Hole 10B: OB left side over the creek bed."
+          "Notes": "OB left side over the dry creek bed."
         },
         "5": {
           "Label": "10C",
@@ -232,7 +232,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 301,
-          "Notes": "Hole 10C: Road and beyond plays out of bounds.  Flags from 10A plays out of bounds."
+          "Notes": "Road and beyond plays out of bounds.  Flags from 10A plays out of bounds."
         },
         "6": {
           "Label": "11",
@@ -240,7 +240,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 213,
-          "Notes": "Hole 11: Both rounds: A position"
+          "Notes": ""
         },
         "7": {
           "Label": "12",
@@ -248,7 +248,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 345,
-          "Notes": "Hole 12: A Pool - Long Pad to Long Basket on the hill.  Electrical substation is out of bounds."
+          "Notes": "Long Pad to Long Basket on the hill.  Electrical substation is out of bounds."
         },
         "8": {
           "Label": "13",
@@ -256,7 +256,7 @@
           "Target": "B",
           "Par": 3,
           "Length": 185,
-          "Notes": "Hole 13: Both Rounds: B Position.  Hazard island marked by rope and flags."
+          "Notes": "Hazard island marked by rope and flags."
         },
         "9": {
           "Label": "14",
@@ -264,7 +264,7 @@
           "Target": "B",
           "Par": 3,
           "Length": 240,
-          "Notes": "Hole 14: Mandatory left of tree on right.  Mandatory right of tree on left.  DZ between Mando's if either is missed.  OB flags behind basket on the inside of the logs. Past logs, right side and left side OB.  Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the backet, until you have good footing, with no penalty."
+          "Notes": "Mandatory left of tree on right.  Mandatory right of tree on left.  DZ between Mando's if either is missed.  OB white flags behind basket on the inside of the logs. Past logs, right side and left side OB.  Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the basket, until you have good footing, with no penalty."
         },
         "10": {
           "Label": "15",
@@ -272,7 +272,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 245,
-          "Notes": "Hole 15: A Pool - Round 2 Plays to A position from the deck.  Out of bounds left side of fairway, marked with flags.  Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the backet, until you have good footing, with no penalty."
+          "Notes": "Out of bounds left side of fairway, marked with flags.  Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the backet, until you have good footing, with no penalty."
         },
         "11": {
           "Label": "16",
@@ -280,7 +280,7 @@
           "Target": "C",
           "Par": 3,
           "Length": 280,
-          "Notes": "Hole 16: C Position both days.  OB on left side, guarding hole 15."
+          "Notes": "C Position both days.  OB on left side, guarding hole 15."
         },
         "12": {
           "Label": "17",
@@ -288,7 +288,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 269,
-          "Notes": "Hole 17: Road plays out of bounds.  Gravel parking lot plays out of bounds.  Mandatory right of tree on left.  Green flags mark the mando line on the left.  If any shot passes that line, mando has been missed, proceed to the drop zone.  Drop zone next to Mandatory if missed.  Mandatory left of tree on right.  Drop zone next to Mandatory if missed.  OB on left (protecting 18) after the mando on the left."
+          "Notes": "Road plays out of bounds.  Gravel parking lot plays out of bounds.  Mandatory right of tree on left.  Green flags mark the mando line on the left.  If any shot passes that line, mando has been missed, proceed to the drop zone.  Drop zone for both mandos is on right side of fairway.  Mandatory left of tree on right."
         },
         "13": {
           "Label": "18",
@@ -296,7 +296,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 230,
-          "Notes": "Hole 18: Road and Beyond plays out of bounds.  Flags protecting 17 out of bounds."
+          "Notes": "Road and Beyond plays out of bounds."
         },
         "14": {
           "Label": "1",
@@ -304,7 +304,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 289,
-          "Notes": "Hole 1: CAUTION: Hikers have right of way!  Wait until fairway is completely clear.  OB: All Asphalt roads.  Take 2 meter relief from Guardsman's."
+          "Notes": "CAUTION: Hikers have right of way!  Wait until fairway is completely clear.  OB: All Asphalt roads.  Take 2 meter relief from Guardsman's."
         },
         "15": {
           "Label": "2/3",
@@ -312,7 +312,7 @@
           "Target": "A",
           "Par": 4,
           "Length": 535,
-          "Notes": "Hole 2/3 Combo: A Pool - Hole 2 long pad to hole 3 basket.  Mando left of tree on right of fairway.  DZ next to mando.  Road and beyond plays as OB.  Take 2 meter relief from Guardsmans.  Hole 2 hazard island is NOT in play for Round 2"
+          "Notes": "Hole 2/3 Combo: Hole 2 long pad to hole 3 basket.  Mando left of tree on right of fairway.  DZ next to mando.  Road and beyond plays as OB.  Take 2 meter relief from Guardsmans.  Hole 2 hazard island is NOT in play for Round 2"
         },
         "16": {
           "Label": "4",
@@ -320,7 +320,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 170,
-          "Notes": "Hole 4: CAUTION: Hikers have right of way!  Wait until fairway is completely clear. Play to new longer basket."
+          "Notes": "CAUTION: Hikers have right of way!  Wait until fairway is completely clear. Play to new longer basket."
         },
         "17": {
           "Label": "5",
@@ -328,15 +328,15 @@
           "Target": "B",
           "Par": 3,
           "Length": 290,
-          "Notes": "Hole 5: Long Pad.  Road and beyond on left OB.  Water plays as normal OB rules."
+          "Notes": "Road and beyond on left OB.  Water plays as normal OB rules."
         },
         "18": {
           "Label": "6",
           "Tee": "Long",
-          "Target": "A",
+          "Target": "B",
           "Par": 3,
           "Length": 263,
-          "Notes": "Hole 6: Round 2 play's to B position. OB island. Must land past the creek to be in bounds.  Any OB off the tee goes to the mandatory drop zone."
+          "Notes": "Creek is OB river (marked with red flags).  Any shot OB proceeds to the mandatory drop zone."
         },
         "19": {
           "Label": "7",
@@ -344,7 +344,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 308,
-          "Notes": "Hole 7: Left position both days."
+          "Notes": "Left position both days."
         },
         "20": {
           "Label": "8",
@@ -352,7 +352,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 333,
-          "Notes": "Hole 8: A Pool - Round 2 Plays to A Position.  Both Days: Out of bounds marked by flags on the left side of fairway.  OB right side of fairway by the yurt."
+          "Notes": "Hole 8: A Pool - Round 2 Plays to A Position.  Both Days: the left side of fairway.  OB right side of fairway by the yurt."
         }
       }
     },
@@ -363,7 +363,7 @@
       "Name": "C Pool - Both Days",
       "Holes": 18,
       "Par": 60,
-      "Length": 3932,
+      "Length": 3937,
       "Units": "feet",
       "GeneralNotes": "If creeks are running, Creek plays as mandatory relief.  Any road and beyond plays OB.",
       "Detail": {
@@ -413,15 +413,15 @@
           "Target": "A",
           "Par": 3,
           "Length": 180,
-          "Notes": "Hole 14: OB (played as Mandatory relief) flags behind basket on the inside of the logs. Past logs, right side and left side plays as Mandatory relief."
+          "Notes": "Hole 14: OB (played as Mandatory relief) flags behind basket on the inside of the logs. Past logs, right side and left side plays as Mandatory relief.  Creek bed: optional relief straight back toward tee, no penalty"
         },
         "7": {
           "Label": "15",
           "Tee": "Short",
-          "Target": "B",
+          "Target": "A",
           "Par": 3,
-          "Length": 230,
-          "Notes": "Hole 15: C Pool - Both rounds play B position from the short pad.  \r\nMandatory relief on left side of fairway, marked with flags.  Creek plays as mandatory relief. Marked with flags"
+          "Length": 235,
+          "Notes": "Hole 15: C Pool - Both rounds play A position (left of creek) from the short pad.  \r\nMandatory relief on left side of fairway, marked with flags.  Creek plays as mandatory relief. Marked with flags"
         },
         "8": {
           "Label": "16",
@@ -530,7 +530,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 230,
-          "Notes": "Hole 9: B Pool - A Position Round 1."
+          "Notes": "A Position Round 1."
         },
         "2": {
           "Label": "10",
@@ -538,7 +538,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 280,
-          "Notes": "Hole 10: B Pool - Short Pad to Hazard Island.  Anything outside of the logs surrounding the green is hazard.  Fence behind basket and beyond plays OB."
+          "Notes": "Short Pad to Hazard Island.  Anything outside of the logs surrounding the green is hazard.  Fence behind basket and beyond plays OB."
         },
         "3": {
           "Label": "10A",
@@ -546,7 +546,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 235,
-          "Notes": "Hole 10A: All Pools - Short Pad.  OB left and deep of basket.  Marked with flags."
+          "Notes": "Short Pad.  OB left and deep of basket.  Marked with flags."
         },
         "4": {
           "Label": "10B",
@@ -554,7 +554,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 140,
-          "Notes": "Hole 10B: OB left side over the creek bed."
+          "Notes": "OB left side over the creek bed."
         },
         "5": {
           "Label": "10C",
@@ -562,7 +562,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 301,
-          "Notes": "Hole 10C: Road and beyond plays out of bounds.  Flags from 10A plays out of bounds."
+          "Notes": "Road and beyond plays out of bounds.  Flags from 10A plays out of bounds."
         },
         "6": {
           "Label": "11",
@@ -570,7 +570,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 213,
-          "Notes": "Hole 11: Both rounds: A position"
+          "Notes": "A position"
         },
         "7": {
           "Label": "12",
@@ -578,7 +578,7 @@
           "Target": "A",
           "Par": 4,
           "Length": 345,
-          "Notes": "Hole 12: B Pool - Long Pad to Long Basket on the hill.  Electrical substation is out of bounds."
+          "Notes": "Long Pad to Long Basket on the hill.  Electrical substation is out of bounds."
         },
         "8": {
           "Label": "13",
@@ -586,7 +586,7 @@
           "Target": "B",
           "Par": 3,
           "Length": 185,
-          "Notes": "Hole 13: Both Rounds: B Position.  Hazard island marked by rope and flags."
+          "Notes": "B Position.  Hazard island marked by rope and flags."
         },
         "9": {
           "Label": "14",
@@ -594,7 +594,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 240,
-          "Notes": "Hole 14: Mandatory left of tree on right.  Mandatory right of tree on left.  DZ between Mando's if either is missed.  OB flags behind basket on the inside of the logs. Past logs, right side and left side OB.  Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the backet, until you have good footing, with no penalty."
+          "Notes": "Mandatory left of tree on right.  Mandatory right of tree on left.  DZ between Mando's if either is missed.  OB flags behind basket on the inside of the logs. Past logs, right side and left side OB.  Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the backet, until you have good footing, with no penalty."
         },
         "10": {
           "Label": "15",
@@ -602,7 +602,7 @@
           "Target": "B",
           "Par": 3,
           "Length": 245,
-          "Notes": "Hole 15: B Pool - Round 1 plays B position from the deck.  Out of bounds left side of fairway, marked with flags.   Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the backet, until you have good footing, with no penalty."
+          "Notes": "Out of bounds left side of fairway, marked with flags.   Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the backet, until you have good footing, with no penalty."
         },
         "11": {
           "Label": "16",
@@ -610,7 +610,7 @@
           "Target": "C",
           "Par": 4,
           "Length": 280,
-          "Notes": "Hole 16: C Position both days.  OB on left side, guarding hole 15."
+          "Notes": "OB on left side, guarding hole 15."
         },
         "12": {
           "Label": "17",
@@ -618,7 +618,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 269,
-          "Notes": "Hole 17: Road plays out of bounds.  Gravel parking lot plays out of bounds.  Mandatory right of tree on left.  Green flags mark the mando line on the left.  If any shot passes that line, mando has been missed, proceed to the drop zone.  Drop zone next to Mandatory if missed.  Mandatory left of tree on right.  Drop zone next to Mandatory if missed.  OB on left (protecting 18) after the mando on the left."
+          "Notes": "Road plays out of bounds.  Gravel parking lot plays out of bounds.  Mandatory right of tree on left.  Green flags mark the mando line on the left.  If any shot passes that line, mando has been missed, proceed to the drop zone.  Drop zone next to Mandatory if missed.  Mandatory left of tree on right.  Drop Zone is on right side of fairway marked by white flags."
         },
         "13": {
           "Label": "18",
@@ -626,7 +626,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 230,
-          "Notes": "Hole 18: Road and Beyond plays out of bounds.  Flags protecting 17 out of bounds."
+          "Notes": "Road and Beyond plays out of bounds."
         },
         "14": {
           "Label": "1",
@@ -634,7 +634,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 289,
-          "Notes": "Hole 1: CAUTION: Hikers have right of way!  Wait until fairway is completely clear.  OB: All Asphalt roads.  Take 2 meter relief from Guardsman's."
+          "Notes": "CAUTION: Hikers have right of way!  Wait until fairway is completely clear.  OB: All Asphalt roads.  Take 2 meter relief from Guardsman's."
         },
         "15": {
           "Label": "2",
@@ -642,7 +642,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 241,
-          "Notes": "Hole 2: B Pool - Play outer Island as hazard island.  Marked with Green flags.  Out of bounds pocket by tee."
+          "Notes": "Play outer Island as hazard island.  Marked with Green flags.  Out of bounds pocket by tee."
         },
         "16": {
           "Label": "3",
@@ -650,7 +650,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 236,
-          "Notes": "Hole 3: Mandatory Left of tree in the woods.  Road and beyond plays out of bounds.  Take 2 meter relief from Guardsman's."
+          "Notes": "Mandatory Left of tree in the woods.  Road and beyond plays out of bounds.  Take 2 meter relief from Guardsman's."
         },
         "17": {
           "Label": "4",
@@ -658,7 +658,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 170,
-          "Notes": "Hole 4: CAUTION: Hikers have right of way!  Wait until fairway is completely clear. Play to new longer basket."
+          "Notes": "CAUTION: Hikers have right of way!  Wait until fairway is completely clear. Play to new longer basket."
         },
         "18": {
           "Label": "5",
@@ -666,15 +666,15 @@
           "Target": "A",
           "Par": 3,
           "Length": 290,
-          "Notes": "Hole 5: Long Pad.  Road and beyond on left OB.  Water plays as normal OB rules."
+          "Notes": "Long Pad.  Road and beyond on left OB.  Water plays as normal OB rules."
         },
         "19": {
           "Label": "6",
           "Tee": "Long",
-          "Target": "B",
+          "Target": "A",
           "Par": 3,
           "Length": 263,
-          "Notes": "Hole 6: Round 1 play's to B position. OB island. Must land past the creek to be in bounds.  Any OB off the tee goes to the mandatory drop zone."
+          "Notes": "Round 1 play's to B position. Creek is OB river (marked with red flags).  Any shot OB proceeds to the mandatory drop zone."
         },
         "20": {
           "Label": "7",
@@ -682,7 +682,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 308,
-          "Notes": "Hole 7: Left position both days."
+          "Notes": "Left position both days."
         },
         "21": {
           "Label": "8",
@@ -690,7 +690,7 @@
           "Target": "B",
           "Par": 3,
           "Length": 286,
-          "Notes": "Hole 8: B Pool - Round 1 Plays to B Position.  Both Days: Out of bounds marked by flags on the left side of fairway.  OB right side of fairway by the yurt."
+          "Notes": "B Position. Out of bounds marked by flags on the left side of fairway.  OB right side of fairway by the yurt."
         }
       }
     },
@@ -711,7 +711,7 @@
           "Target": "B",
           "Par": 3,
           "Length": 170,
-          "Notes": "Hole 9: B Pool - B Position Round 2."
+          "Notes": "B Position"
         },
         "2": {
           "Label": "10",
@@ -719,7 +719,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 420,
-          "Notes": "Hole 10: B Pool - Long Pad. Fence behind basket and beyond plays OB."
+          "Notes": "Long Pad. Fence behind basket and beyond plays OB."
         },
         "3": {
           "Label": "10A",
@@ -727,7 +727,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 235,
-          "Notes": "Hole 10A: All Pools - Short Pad.  OB left and deep of basket.  Marked with flags."
+          "Notes": "Short Pad.  OB left and deep of basket.  Marked with flags."
         },
         "4": {
           "Label": "10B",
@@ -735,7 +735,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 140,
-          "Notes": "Hole 10B: OB left side over the creek bed."
+          "Notes": "OB left side over the dry creek bed."
         },
         "5": {
           "Label": "10C",
@@ -743,7 +743,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 301,
-          "Notes": "Hole 10C: Road and beyond plays out of bounds.  Flags from 10A plays out of bounds."
+          "Notes": "Road and beyond plays out of bounds.  Flags from 10A plays out of bounds."
         },
         "6": {
           "Label": "11",
@@ -751,7 +751,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 213,
-          "Notes": "Hole 11: Both rounds: A position"
+          "Notes": "Both rounds: A position"
         },
         "7": {
           "Label": "12",
@@ -759,7 +759,7 @@
           "Target": "A",
           "Par": 4,
           "Length": 345,
-          "Notes": "Hole 12: B Pool - Long Pad to Long Basket on the hill.  Electrical substation is out of bounds."
+          "Notes": "Long Pad to Long Basket on the hill.  Electrical substation is out of bounds."
         },
         "8": {
           "Label": "13",
@@ -767,7 +767,7 @@
           "Target": "B",
           "Par": 3,
           "Length": 185,
-          "Notes": "Hole 13: Both Rounds: B Position.  Hazard island marked by rope and flags."
+          "Notes": "Hazard island marked by rope and flags."
         },
         "9": {
           "Label": "14",
@@ -775,7 +775,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 240,
-          "Notes": "Hole 14: Mandatory left of tree on right.  Mandatory right of tree on left.  DZ between Mando's if either is missed.  OB flags behind basket on the inside of the logs. Past logs, right side and left side OB.  Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the backet, until you have good footing, with no penalty."
+          "Notes": "Mandatory left of tree on right.  Mandatory right of tree on left.  DZ between Mando's if either is missed.  White OB flags behind basket on the inside of the logs. Past logs, right side and left side OB.  Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the backet, until you have good footing, with no penalty."
         },
         "10": {
           "Label": "15",
@@ -783,7 +783,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 245,
-          "Notes": "Hole 15: B Pool - Round 2 plays to A position from the deck.  Out of bounds left side of fairway, marked with flags.   Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the backet, until you have good footing, with no penalty."
+          "Notes": "Out of bounds left side of fairway, marked with flags.   Water is not OB.  If you land in the water, you have the option to play from the water, or take casual relief backwards in line with the backet, until you have good footing, with no penalty."
         },
         "11": {
           "Label": "16",
@@ -791,7 +791,7 @@
           "Target": "C",
           "Par": 4,
           "Length": 280,
-          "Notes": "Hole 16: C Position both days.  OB on left side, guarding hole 15."
+          "Notes": "OB on left side, guarding hole 15."
         },
         "12": {
           "Label": "17",
@@ -799,7 +799,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 269,
-          "Notes": "Hole 17: Road plays out of bounds.  Gravel parking lot plays out of bounds.  Mandatory right of tree on left.  Green flags mark the mando line on the left.  If any shot passes that line, mando has been missed, proceed to the drop zone.  Drop zone next to Mandatory if missed.  Mandatory left of tree on right.  Drop zone next to Mandatory if missed.  OB on left (protecting 18) after the mando on the left."
+          "Notes": "Road plays out of bounds.  Gravel parking lot plays out of bounds.  Mandatory right of tree on left.  Green flags mark the mando line on the left.  If any shot passes that line, mando has been missed, proceed to the drop zone.  Drop zone next to Mandatory if missed.  Mandatory left of tree on right.  Drop zone right side of fairway if Mandatory if missed.  OB on left (protecting 18) after the mando on the left."
         },
         "13": {
           "Label": "18",
@@ -807,7 +807,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 230,
-          "Notes": "Hole 18: Road and Beyond plays out of bounds.  Flags protecting 17 out of bounds."
+          "Notes": "Road and Beyond plays out of bounds."
         },
         "14": {
           "Label": "1",
@@ -815,7 +815,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 289,
-          "Notes": "Hole 1: CAUTION: Hikers have right of way!  Wait until fairway is completely clear.  OB: All Asphalt roads.  Take 2 meter relief from Guardsman's."
+          "Notes": "CAUTION: Hikers have right of way!  Wait until fairway is completely clear.  OB: All Asphalt roads.  Take 2 meter relief from Guardsman's."
         },
         "15": {
           "Label": "2/3",
@@ -823,7 +823,7 @@
           "Target": "A",
           "Par": 5,
           "Length": 535,
-          "Notes": "Hole 2/3 Combo: B Pool - Hole 2 long pad to hole 3 basket.  Mando left of tree on right of fairway.  DZ next to mando.  Road and beyond plays as OB.  Take 2 meter relief from Guardsmans.  Hole 2 hazard island is NOT in play for Round 2"
+          "Notes": "Hole 2/3 Combo:  Hole 2 long pad to hole 3 basket.  Mando left of tree on right of fairway.  DZ next to mando.  Road and beyond plays as OB.  Take 2 meter relief from Guardsmans.  Hole 2 hazard island is NOT in play for Round 2"
         },
         "16": {
           "Label": "4",
@@ -831,7 +831,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 170,
-          "Notes": "Hole 4: CAUTION: Hikers have right of way!  Wait until fairway is completely clear. Play to new longer basket."
+          "Notes": "CAUTION: Hikers have right of way!  Wait until fairway is completely clear. Play to new longer basket."
         },
         "17": {
           "Label": "5",
@@ -839,15 +839,15 @@
           "Target": "A",
           "Par": 3,
           "Length": 290,
-          "Notes": "Hole 5: Long Pad.  Road and beyond on left OB. Water plays as normal OB rules."
+          "Notes": "Road and beyond on left OB. Water plays as normal OB rules."
         },
         "18": {
           "Label": "6",
           "Tee": "Long",
-          "Target": "A",
+          "Target": "B",
           "Par": 3,
           "Length": 263,
-          "Notes": "Hole 6: Round 2 play's to B position. OB island. Must land past the creek to be in bounds.  Any OB off the tee goes to the mandatory drop zone."
+          "Notes": "Creek is OB river (marked with red flags).  Any shot OB proceeds to the mandatory drop zone."
         },
         "19": {
           "Label": "7",
@@ -855,7 +855,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 308,
-          "Notes": "Hole 7: Left position both days."
+          "Notes": "Left position both days."
         },
         "20": {
           "Label": "8",
@@ -863,7 +863,7 @@
           "Target": "A",
           "Par": 3,
           "Length": 333,
-          "Notes": "Hole 8: Round 2 plays to A position.  Both Days: Out of bounds marked by flags on the left side of fairway.  OB right side of fairway by the yurt."
+          "Notes": "Out of bounds marked by flags on the left side of fairway.  OB right side of fairway by the yurt."
         }
       }
     }

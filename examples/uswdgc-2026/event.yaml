@@ -1,0 +1,242 @@
+# ============================================================================
+# USWDGC 2026 — US Women's Disc Golf Championships
+# ============================================================================
+# Spectator guide example for pdga-caddie-book. This is a real event config
+# for the 25th anniversary USWDGC hosted by ElevateUT Disc Golf in
+# Salt Lake City, UT — July 16–19, 2026.
+#
+# This example demonstrates the `guides.spectator` feature. Caddie book
+# pools are defined minimally here since the primary output is the
+# spectator guide, not per-pool caddie books.
+# ============================================================================
+
+event:
+  name: "USWDGC 2026"
+  tagline: "25th Anniversary · Salt Lake City, UT"
+  dates: "July 16–19, 2026"
+  location: "Salt Lake City, UT"
+  description: "US Women's Disc Golf Championships 2026 — 350+ players, 14 countries, Brighton Resort at 9,000 feet in Big Cottonwood Canyon."
+
+brand:
+  primary_logo: images/uswdgc-logo.png
+  org_logo: images/elevateut-logo.png
+
+deploy:
+  url_base: "https://elevateut.org/caddy/uswdgc"
+
+# ----------------------------------------------------------------------------
+# Pools — minimal definition for reference. Caddie books for individual
+# courses (Brighton, Creekside, Dragonfly, Roots) are built separately.
+# ----------------------------------------------------------------------------
+pools: {}
+
+# ============================================================================
+# SPECTATOR GUIDE
+# ============================================================================
+guides:
+  spectator:
+    title: "Spectator Guide"
+    subtitle: "25th Anniversary • Brighton Resort • Salt Lake City"
+    description: "Your guide to watching the 2026 US Women's Disc Golf Championships at Brighton Resort in Big Cottonwood Canyon."
+    cover_logo: images/uswdgc-logo-white.svg
+    og_image: images/og-spectator-guide.png
+    color:
+      bg: "#003462"
+      accent: "#FABE28"
+      light: "#E8EEF5"
+      name: "USWDGC Blue"
+
+    # -- Welcome slide --
+    welcome:
+      eyebrow: "Welcome"
+      headline: "Welcome to Brighton"
+      paragraphs:
+        - "Welcome to the 25th anniversary US Women's Disc Golf Championships — the largest and longest-running women's disc golf event in the world."
+        - "Brighton Resort sits at 9,000 feet in Big Cottonwood Canyon. Championship rounds play 3.4 miles down the mountain with chairlift access for players."
+        - "This guide has everything you need to follow the action at Brighton — where to go, what to bring, and how to be a great gallery member."
+
+    # -- Schedule (spectator-facing) --
+    # Note: uses the top-level `schedule:` block, shared with caddie books.
+
+    # -- Spectator etiquette --
+    etiquette:
+      eyebrow: "Spectator Etiquette"
+      headline: "How to Be a Great Gallery"
+      callout:
+        headline: "No spectator ropes"
+        body: "Only OB boundary ropes are deployed on course. Maintain at least 6 feet of distance from all ropes and marked boundaries at all times."
+      items:
+        - { label: "Quiet on the tee", text: "No talking, movement, or phone sounds while a player is addressing the disc on the tee pad or putting." }
+        - { label: "Stay behind players", text: "Never position yourself ahead of any player in a group. The gallery follows behind the group." }
+        - { label: "No flash photography", text: "Flash and shutter sounds are distracting. Use silent/burst mode if taking photos." }
+        - { label: "Follow the gallery marshal", text: "Gallery marshals direct spectator flow. Follow their instructions on when and where to move." }
+        - { label: "Right of way", text: "Players and caddies always have right of way on all paths and trails." }
+        - { label: "Leave no trace", text: "Pack out everything you bring in. Use provided trash and recycling stations." }
+
+    # -- How to follow play --
+    how_to_watch:
+      eyebrow: "Following Play"
+      headline: "How to Watch"
+      items:
+        - { label: "Lead card", text: "The top-scoring group. At Brighton, only lead card gets a full gallery on Hole 2 due to terrain." }
+        - { label: "Chase card", text: "Second-place group. Gallery uses designated blue-zone viewing areas on select holes." }
+        - { label: "Walking the course", text: "GA spectators walk down the mountain at Brighton — the chairlift is reserved for players and staff." }
+        - { label: "Spectator Central", text: "The main gathering area between Holes 7 and 9 at Brighton. Food, drinks, merch, and live scoring." }
+        - { label: "Party Shirt Zone", text: "The famous Party Shirt hole — stay in the designated zone behind the tee. Flamingos welcome, fairway access not." }
+        - { label: "Hole 18 amphitheater", text: "The finish hole. Spectators on the road-right side only. Natural amphitheater seating on the hillside." }
+        - { label: "Live scoring", text: "Follow along on UDisc Live for real-time scores and leaderboard updates." }
+
+    # -- Additional info slides --
+    info_slides:
+      - eyebrow: "Altitude Advisory"
+        headline: "Playing at 9,000 Feet"
+        image: images/elevation-guide.png
+        paragraphs:
+          - "Brighton sits at 8,755 ft — nearly a mile higher than Salt Lake City. The altitude affects everyone, players and spectators alike."
+        items:
+          - { label: "Hydrate", text: "Drink twice as much water as you normally would. Start hydrating the day before." }
+          - { label: "Sun protection", text: "UV is 25–35% stronger at this elevation. Sunscreen, hat, and sunglasses are essential." }
+          - { label: "Pace yourself", text: "You'll get winded faster walking hills. Take breaks, sit down when you can." }
+          - { label: "Weather shifts fast", text: "Mountain weather changes in minutes. Bring a rain layer even on sunny days." }
+          - { label: "Temperature", text: "Expect 15–20°F cooler than the valley. Morning temps in the 40s–50s, afternoon 60s–70s." }
+      - eyebrow: "Canyon Rules"
+        headline: "Big Cottonwood Canyon"
+        paragraphs:
+          - "Brighton is in Big Cottonwood Canyon, a protected Salt Lake City watershed. Special rules apply to everyone in the canyon."
+        items:
+          - { label: "No dogs", text: "Dogs are prohibited in Big Cottonwood Canyon — no exceptions, even in vehicles. This is a watershed protection law." }
+          - { label: "No swimming", text: "No body contact with any water in the canyon. The creek feeds Salt Lake City's drinking water." }
+          - { label: "No camping", text: "Camping is restricted to designated USFS campgrounds (Spruces, Redman, Jordan Pines). No dispersed camping." }
+
+    # -- Food & drink --
+    food_drink:
+      eyebrow: "Food &amp; Drink"
+      headline: "Food &amp; Beverage"
+      items:
+        - { label: "Spectator Central", text: "Hot food and concessions between Holes 7 and 9 at Brighton, operated by Brighton Resort F&amp;B staff." }
+        - { label: "Beer", text: "Uinta Brewing — Utah's premier craft brewery and long-time Brighton and disc golf supporter. Walk-around open container in designated areas." }
+        - { label: "Base lodge", text: "Brighton Lodge has a coffee shop, Rose BBQ, and cafeteria open during event hours." }
+        - { label: "Water stations", text: "Hydration stations on the mountain. Bring a refillable water bottle — altitude dehydrates fast." }
+
+    # -- Local rules --
+    local_rules:
+      eyebrow: "Know Before You Go"
+      headline: "Important Info"
+      callout:
+        headline: "No dogs in Big Cottonwood Canyon"
+        body: "This is a Salt Lake City watershed protection law. Dogs are not permitted anywhere in the canyon, including inside vehicles."
+      items:
+        - { label: "Tickets", text: "VIP and General Admission day passes available. LOC controls all ticket sales — Brighton does not sell spectator passes." }
+        - { label: "Parking at Brighton", text: "VIP parking in front of Explorer. General parking in front of Lodge. Overflow lots available." }
+        - { label: "Chairlift", text: "Reserved for players and credentialed staff only. GA spectators walk the mountain course." }
+        - { label: "Restrooms", text: "Base lodge restrooms plus porta potties on the mountain and at base." }
+        - { label: "Showers", text: "Available at Brighton Lodge — $100/week pass. 20% room discount for event attendees." }
+        - { label: "Cell service", text: "Limited in Big Cottonwood Canyon. Download UDisc scores before heading up the mountain." }
+        - { label: "Weather", text: "Mountain weather changes fast. Bring layers and rain gear regardless of the valley forecast." }
+
+# ----------------------------------------------------------------------------
+# Schedule — spectator-facing event schedule.
+# Shared between caddie books and guides.
+# ----------------------------------------------------------------------------
+schedule:
+  - day: "Thu, Jul 16"
+    events:
+      - { time: "8:00 AM", text: "Round 1 tee times begin at Brighton." }
+      - { time: "All Day", text: "Spectator Central open — food, merch, live scoring." }
+  - day: "Fri, Jul 17"
+    events:
+      - { time: "8:00 AM", text: "Round 2 tee times begin at Brighton." }
+      - { time: "All Day", text: "Spectator Central open." }
+  - day: "Sat, Jul 18"
+    events:
+      - { time: "8:00 AM", text: "Semifinals — Top cards at Brighton." }
+      - { time: "Evening", text: "USWDGC Social Events — see events schedule." }
+  - day: "Sun, Jul 19"
+    events:
+      - { time: "3:20 PM", text: "FPO Final Round at Brighton." }
+      - { time: "", text: "Women's Sports Network / Amazon broadcast." }
+      - { time: "Following", text: "Awards ceremony at Brighton base." }
+
+# ----------------------------------------------------------------------------
+# Parking — Brighton-specific.
+# Shared between caddie books and guides.
+# ----------------------------------------------------------------------------
+parking:
+  callout:
+    headline: "VIP parking in front of Explorer. GA in front of Lodge."
+  body: "Follow signs up Big Cottonwood Canyon (SR-190). Brighton is at the top of the canyon, ~14 miles from the I-215 exit."
+  footnote: "Overflow parking available in upper lots. Carpooling encouraged — canyon parking is limited."
+
+# ----------------------------------------------------------------------------
+# Sponsors — shown in both caddie books and guides.
+# ----------------------------------------------------------------------------
+sponsors:
+  inquiry_email: uswdgc@elevateut.com
+  cards:
+    # -- Title Sponsor --
+    - name: "MVP Disc Sports"
+      description: "Title Sponsor. Precision performance disc golf equipment."
+      logo: images/mvp-logo-gold.svg
+      url: "https://mvpdiscsports.com"
+    # -- Retail Sponsor --
+    - name: "Another Round"
+      description: "Retail Sponsor. Salt Lake's local disc golf shop — discs, bags, gear, and beer on tap."
+      logo: images/another-round-logo.png
+      url: "https://anotherroundsaltlake.com"
+    # -- Supporting Sponsors --
+    - name: "PDGA"
+      description: "Professional Disc Golf Association — sanctioning body."
+      logo: images/pdga-logo.png
+      url: "https://www.pdga.com"
+    - name: "Sports Salt Lake"
+      description: "Salt Lake City's sports tourism partner."
+      logo: images/sports-salt-lake-logo.png
+      url: "https://www.visitsaltlake.com/sports"
+    - name: "Utah Sports Commission"
+      description: "Growing Utah's sports economy."
+      logo: images/utah-sports-commission-logo.png
+      url: "https://utahsportscommission.com"
+    - name: "Brighton Resort"
+      description: "Championship venue — Big Cottonwood Canyon."
+      logo: images/brighton-resort-logo.svg
+      url: "https://www.brightonresort.com"
+    - name: "Team Thunderpuss"
+      description: "501(c)(3) women's disc golf advocacy and grassroots development."
+      logo: images/team-thunderpuss-logo.png
+      url: "https://www.teamthunderpuss.org"
+    - name: "Salty Queens"
+      description: "Women's disc golf community — She Throws SLC."
+      logo: images/salty-queens-logo.png
+      url: "https://www.shethrowsslc.org/salty-queens"
+    - name: "FlyDsgn"
+      description: "Custom disc golf stamps and design."
+      logo: images/flydsgn-logo.png
+      url: "https://flydsgn.com"
+    - name: "Second Summit Cider"
+      description: "Utah craft cider — taproom partner."
+      logo: images/second-summit-logo.png
+      url: "https://secondsummitcider.com"
+    - name: "Utah Cultural Celebration Center"
+      description: "Events venue — opening ceremony and social events."
+      logo: images/uccc-logo.png
+      url: "https://culturalcelebration.org"
+    - name: "FL!PT"
+      description: "Disc golf league management platform."
+      logo: images/flipt-logo.png
+      url: "https://www.getflipt.com"
+    - name: "Solitude Resort"
+      description: "Big Cottonwood Canyon lodging partner."
+      logo: images/solitude-resort-logo-dark.svg
+    - name: "ElevateUT"
+      description: "Host organization — Utah 501(c)(3) building disc golf courses."
+      logo: images/elevateut-sponsor-logo.png
+      url: "https://elevateut.com"
+
+# ----------------------------------------------------------------------------
+# Back cover
+# ----------------------------------------------------------------------------
+back_cover:
+  headline: "See you on the mountain."
+  subhead: "25th Anniversary USWDGC • Salt Lake City, UT"
+  url: "https://elevateut.org/uswdgc"
+  url_text: "elevateut.org/uswdgc"
