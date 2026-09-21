@@ -75,7 +75,11 @@ def _single_card(event: Event, pool_key: str, day_index: int) -> str:
         player_rows += f'<tr class="player-row"><td class="name-cell"></td>{score_cells}<td class="score-cell total-score"></td></tr>\n'
 
     logo = _card_logo(event)
-    logo_html = f'<img class="card-logo" src="{logo}" alt="">' if logo else ""
+    # logo_fit: cover fills the whole cell edge to edge (for art cropped to the cell's shape);
+    # the default fits the logo inside it.
+    cover = (event.raw.get("scorecards") or {}).get("logo_fit") == "cover"
+    logo_html = f'<img class="card-logo{" cover" if cover else ""}" src="{logo}" alt="">' if logo else ""
+    label_cls = "label-col has-cover" if logo and cover else "label-col"
 
     em = event.event_meta
     title = f'{em.get("name", "Tournament")} &mdash; {pool.get("name", pool_key)}'
@@ -88,7 +92,7 @@ def _single_card(event: Event, pool_key: str, day_index: int) -> str:
   </div>
   <table>
     <tr>
-      <th class="label-col" rowspan="4">{logo_html}</th>
+      <th class="{label_cls}" rowspan="4">{logo_html}</th>
       {hole_num_cells}
       <th class="total-header" rowspan="4">Tot</th>
     </tr>
@@ -188,6 +192,8 @@ def _full_page(event: Event, pool_key: str, day_index: int) -> str:
     .par-cell {{ font-weight: 800; color: {pc["bg"]}; font-size: 9px; }}
     .dist-cell {{ font-size: 10px; font-weight: 700; color: #333; }}
     .card-logo {{ display: block; height: 54px; width: auto; margin: 0 auto; }}
+    .label-col.has-cover {{ padding: 0; position: relative; }}
+    .card-logo.cover {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }}
     .name-header {{ width: 160px; min-width: 160px; background: {pc["bg"]}; color: #fff; font-weight: 700; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 6px; border-color: {pc["bg"]}; text-align: left; }}
     .name-cell {{ width: 160px; min-width: 160px; text-align: left; padding: 2px 6px; font-size: 12px; }}
     .total-header {{ background: {pc["bg"]}; color: #fff; font-weight: 700; font-size: 7px; letter-spacing: 0.04em; text-transform: uppercase; padding: 2px 1px; border-color: {pc["bg"]}; width: 28px; min-width: 28px; }}
