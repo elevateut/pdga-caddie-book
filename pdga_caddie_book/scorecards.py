@@ -20,10 +20,31 @@ from .config import Event, load_event
 STRIPE_FALLBACK = "#f7f7f7"
 
 
+def _day_span(pool: dict, day_index: int) -> list[dict]:
+    """This day plus the days after it that repeat its layout (same_as_previous).
+
+    One card covers the whole span, so its header names every day it is played.
+    """
+    days = pool.get("days") or []
+    span = [days[day_index]]
+    for d in days[day_index + 1:]:
+        if not d.get("same_as_previous"):
+            break
+        span.append(d)
+    return span
+
+
+def _span_label(pool: dict, day_index: int) -> str:
+    return " &amp; ".join(d.get("label", "") for d in _day_span(pool, day_index))
+
+
+def _span_date(pool: dict, day_index: int) -> str:
+    return " &amp; ".join(d.get("date", "") for d in _day_span(pool, day_index))
+
+
 def _single_card(event: Event, pool_key: str, day_index: int) -> str:
     pool = event.pools[pool_key]
     pc = event.pool_color(pool_key)
-    day = pool["days"][day_index]
     layout = event.layout_for_day(pool_key, day_index)
     if not layout:
         return ""
@@ -47,7 +68,7 @@ def _single_card(event: Event, pool_key: str, day_index: int) -> str:
 
     em = event.event_meta
     title = f'{em.get("name", "Tournament")} &mdash; {pool.get("name", pool_key)}'
-    meta = f'{day.get("label", "")} &bull; {day.get("date", "")} &bull; {nholes}h &bull; Par {total_par} &bull; {total_len:,}ft'
+    meta = f'{_span_label(pool, day_index)} &bull; {_span_date(pool, day_index)} &bull; {nholes}h &bull; Par {total_par} &bull; {total_len:,}ft'
 
     return f"""<div class="card">
   <div class="card-header">
@@ -76,7 +97,6 @@ def _single_card(event: Event, pool_key: str, day_index: int) -> str:
 def _notes_card(event: Event, pool_key: str, day_index: int) -> str:
     pool = event.pools[pool_key]
     pc = event.pool_color(pool_key)
-    day = pool["days"][day_index]
     layout = event.layout_for_day(pool_key, day_index)
     if not layout:
         return ""
@@ -96,7 +116,7 @@ def _notes_card(event: Event, pool_key: str, day_index: int) -> str:
     creek_text = "OB"
     if creek_item:
         creek_text = (creek_item.get("text_by_pool") or {}).get(pool_key) or creek_item.get("text", "OB")
-    meta = f'{day.get("label", "")} &bull; Hole Notes &bull; Creek = {creek_text} &bull; Roads = OB'
+    meta = f'{_span_label(pool, day_index)} &bull; Hole Notes &bull; Creek = {creek_text} &bull; Roads = OB'
 
     return f"""<div class="card notes-card">
   <div class="card-header">
@@ -118,9 +138,8 @@ def _full_page(event: Event, pool_key: str, day_index: int) -> str:
     back = notes + "\n" + notes + "\n" + notes
 
     pool = event.pools[pool_key]
-    day = pool["days"][day_index]
     em = event.event_meta
-    title = f'{em.get("name", "Tournament")} — {pool.get("name", pool_key)} {day.get("label", "")} Scorecard'
+    title = f'{em.get("name", "Tournament")} — {pool.get("name", pool_key)} {_span_label(pool, day_index).replace("&amp;", "&")} Scorecard'
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -307,11 +326,15 @@ def build_event(
     for key, pool in event.pools.items():
         if pool_filter and key not in pool_filter:
             continue
+        # A day that repeats the previous day's layout gets no card of its own: the
+        # earlier card covers it, and its header names both days (see _day_span).
         for i, day in enumerate(pool.get("days") or []):
             if day.get("same_as_previous"):
                 continue
             html = _full_page(event, key, i)
-            fname = f"scorecard-{key.lower()}-day{i + 1}.html"
+            n = len(_day_span(pool, i))
+            days_part = f"day{i + 1}" if n == 1 else f"day{i + 1}-{i + n}"
+            fname = f"scorecard-{key.lower()}-{days_part}.html"
             out_path = os.path.join(output_dir, fname)
             with open(out_path, "w", encoding="utf-8") as f:
                 f.write(html)
