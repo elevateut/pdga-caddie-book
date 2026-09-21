@@ -230,8 +230,12 @@ ed_welcome:
   photo: images/scott.jpg
   headline: "Disc Golf People Building Disc Golf Things"
   paragraphs:
-    - "Single page only — multiple paragraphs OK."
+    - "One page, multiple paragraphs OK."
 ```
+
+Either note can span slides with `pages:` (each a `title` + `paragraphs`), and the
+signature lands on the last one. For the ED note, `pages:` replaces `headline` and
+`paragraphs`.
 
 ## `rules`
 

@@ -442,11 +442,14 @@ def ed_welcome(event: Event, pool_key: str) -> list[str]:
     who = event.raw.get("ed_welcome") or {}
     if not who:
         return []
-    page = {
+    pages = who.get("pages") or [{
         "title": who.get("headline", "Welcome"),
         "paragraphs": who.get("paragraphs") or [],
-    }
-    return [_welcome_page(event, pool_key, who, page, "From the Executive Director", True)]
+    }]
+    return [
+        _welcome_page(event, pool_key, who, page, "From the Executive Director", i == len(pages) - 1)
+        for i, page in enumerate(pages)
+    ]
 
 
 # ---------------------------------------------------------------------------
