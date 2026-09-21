@@ -169,12 +169,12 @@ def _full_page(event: Event, pool_key: str, day_index: int) -> str:
     .label-col {{ width: 160px; min-width: 160px; background: {pc["bg"]}; color: #fff; font-weight: 700; font-size: 6px; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 2px; border-color: {pc["bg"]}; }}
     .hole-col {{ background: {pc["bg"]}; color: #fff; font-weight: 900; font-size: 9px; padding: 2px 0; border-color: {pc["bg"]}; height: 18px; }}
     .info-row td, .info-row th {{ height: 14px; }}
-    .dist-row td, .dist-row th {{ height: 16px; }}
+    .dist-row td, .dist-row th {{ height: 18px; }}
     .info-cell {{ padding: 1px 0; font-size: 8px; background: {light}; }}
     .tee-cell {{ font-size: 7px; font-weight: 600; color: #555; text-transform: uppercase; }}
     .target-cell {{ font-size: 8px; font-weight: 700; color: {pc["bg"]}; text-transform: uppercase; }}
     .par-cell {{ font-weight: 800; color: {pc["bg"]}; font-size: 9px; }}
-    .dist-cell {{ font-size: 7px; color: #666; }}
+    .dist-cell {{ font-size: 10px; font-weight: 700; color: #333; }}
     .name-header {{ width: 160px; min-width: 160px; background: {pc["bg"]}; color: #fff; font-weight: 700; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 6px; border-color: {pc["bg"]}; text-align: left; }}
     .name-cell {{ width: 160px; min-width: 160px; text-align: left; padding: 2px 6px; font-size: 12px; }}
     .total-header {{ background: {pc["bg"]}; color: #fff; font-weight: 700; font-size: 7px; letter-spacing: 0.04em; text-transform: uppercase; padding: 2px 1px; border-color: {pc["bg"]}; width: 28px; min-width: 28px; }}
