@@ -70,6 +70,15 @@ alert on the parking slide, white text) and `gold` (the rules callout, dark text
 
 **Cuts must align between front and back.** Both sides are 3 horizontal strips stacked top-to-bottom; the dashed cut lines on the front match the strip boundaries on the back. The rotation happens INSIDE each strip (just the notes content), not on the whole back page.
 
+**Phones are a swipe deck, not reveal's scroll view.** reveal 5 switches any viewport under
+435px (every phone) to its scroll view: all slides stacked into one snapping page. Each slide
+here scrolls on its own (`overflow-y: auto`), so phones got a scroller inside a scroller and
+pages stuck mid-drag (found Sep 2026: 4 of 12 touch drags went nowhere on the live Wunderfall
+book). `shell.py` sets `scrollActivationWidth: null` and gives slides `touch-action: pan-y
+pinch-zoom`. Test phone behaviour with Playwright `isMobile`/`hasTouch` and CDP touch
+gestures (`Input.synthesizeScrollGesture`, `Input.dispatchTouchEvent`); a desktop-width check
+never sees scroll view.
+
 **Playwright PDF wait.** `pdf.py` calls `page.wait_for_function("=> data-fit-done === '1'")` after navigating so the auto-fit JS settles before the PDF is captured. Removing or shortcutting this WILL ship 5px font output.
 
 ## Build / verify

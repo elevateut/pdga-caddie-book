@@ -121,6 +121,11 @@ def _render_shell(
       overflow-y: auto;
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
+      /* reveal sets touch-action: pinch-zoom on .reveal, which forbids panning. Let a
+         slide pan vertically so a long one scrolls; horizontal drags still reach reveal's
+         swipe handler because pan-x stays disallowed. */
+      touch-action: pan-y pinch-zoom;
+      overscroll-behavior: contain;
     }}
     .reveal .slides p {{ line-height: 1.45; }}
     .reveal .progress {{ color: {color["accent"]}; height: 4px; }}
@@ -155,6 +160,11 @@ def _render_shell(
       margin: 0,
       minScale: 1,
       maxScale: 1,
+      // reveal 5 switches any viewport under 435px (every phone) to its scroll view, which
+      // stacks the slides into one long snapping page. Each slide here already scrolls on
+      // its own, so phones got a scroller inside a scroller and pages stuck mid-swipe.
+      // Keep the swipe deck the slides are designed for.
+      scrollActivationWidth: null,
     }});
     window.addEventListener('resize', () => {{
       Reveal.configure({{ width: window.innerWidth, height: window.innerHeight }});
