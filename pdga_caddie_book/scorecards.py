@@ -42,6 +42,14 @@ def _span_date(pool: dict, day_index: int) -> str:
     return " &amp; ".join(d.get("date", "") for d in _day_span(pool, day_index))
 
 
+def _card_logo(event: Event) -> str | None:
+    """scorecards.logo in event.yaml: true for brand.primary_logo, or a path. Off by default."""
+    logo = (event.raw.get("scorecards") or {}).get("logo")
+    if logo is True:
+        logo = (event.raw.get("brand") or {}).get("primary_logo")
+    return event.asset(logo) if isinstance(logo, str) else None
+
+
 def _single_card(event: Event, pool_key: str, day_index: int) -> str:
     pool = event.pools[pool_key]
     pc = event.pool_color(pool_key)
@@ -66,6 +74,9 @@ def _single_card(event: Event, pool_key: str, day_index: int) -> str:
         score_cells = "".join('<td class="score-cell"></td>' for _ in holes)
         player_rows += f'<tr class="player-row"><td class="name-cell"></td>{score_cells}<td class="score-cell total-score"></td></tr>\n'
 
+    logo = _card_logo(event)
+    logo_html = f'<img class="card-logo" src="{logo}" alt="">' if logo else ""
+
     em = event.event_meta
     title = f'{em.get("name", "Tournament")} &mdash; {pool.get("name", pool_key)}'
     meta = f'{_span_label(pool, day_index)} &bull; {_span_date(pool, day_index)} &bull; {nholes}h &bull; Par {total_par} &bull; {total_len:,}ft'
@@ -77,7 +88,7 @@ def _single_card(event: Event, pool_key: str, day_index: int) -> str:
   </div>
   <table>
     <tr>
-      <th class="label-col" rowspan="4"></th>
+      <th class="label-col" rowspan="4">{logo_html}</th>
       {hole_num_cells}
       <th class="total-header" rowspan="4">Tot</th>
     </tr>
@@ -176,6 +187,7 @@ def _full_page(event: Event, pool_key: str, day_index: int) -> str:
     .target-cell {{ font-size: 8px; font-weight: 700; color: {pc["bg"]}; text-transform: uppercase; }}
     .par-cell {{ font-weight: 800; color: {pc["bg"]}; font-size: 9px; }}
     .dist-cell {{ font-size: 10px; font-weight: 700; color: #333; }}
+    .card-logo {{ display: block; height: 54px; width: auto; margin: 0 auto; }}
     .name-header {{ width: 160px; min-width: 160px; background: {pc["bg"]}; color: #fff; font-weight: 700; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 6px; border-color: {pc["bg"]}; text-align: left; }}
     .name-cell {{ width: 160px; min-width: 160px; text-align: left; padding: 2px 6px; font-size: 12px; }}
     .total-header {{ background: {pc["bg"]}; color: #fff; font-weight: 700; font-size: 7px; letter-spacing: 0.04em; text-transform: uppercase; padding: 2px 1px; border-color: {pc["bg"]}; width: 28px; min-width: 28px; }}
