@@ -140,6 +140,7 @@ def _full_page(event: Event, pool_key: str, day_index: int) -> str:
     pool = event.pools[pool_key]
     em = event.event_meta
     title = f'{em.get("name", "Tournament")} — {pool.get("name", pool_key)} {_span_label(pool, day_index).replace("&amp;", "&")} Scorecard'
+    ink_css = INK_SAVER_CSS if (event.raw.get("scorecards") or {}).get("ink_saver") else ""
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -232,6 +233,7 @@ def _full_page(event: Event, pool_key: str, day_index: int) -> str:
        and the visual rhythm of the strip is consistent. */
     .back-page .notes-card .note-row:last-child {{ border-bottom: none; }}
     @media print {{ body {{ margin: 0; }} .page {{ max-width: none; }} }}
+{ink_css}
   </style>
 </head>
 <body>
@@ -291,6 +293,20 @@ def _full_page(event: Event, pool_key: str, day_index: int) -> str:
   </script>
 </body>
 </html>"""
+
+
+# scorecards.ink_saver in event.yaml: black text on white for a greyscale printer.
+# No filled cells, thin grey rules, one black rule between the hole info and the scores.
+INK_SAVER_CSS = """
+    .card-header { border-bottom: 1px solid #000; }
+    .card-title, .target-cell, .par-cell, .dist-cell, .total-info, .note-hole { color: #000; }
+    .label-col, .hole-col, .name-header, .total-header { background: #fff; color: #000; border-color: #bbb; }
+    .hole-col { font-size: 10px; }
+    .info-cell, .total-info, .total-score, .score-cell, .name-cell,
+    .player-row:nth-child(even) .score-cell, .player-row:nth-child(even) .name-cell,
+    .player-row:nth-child(even) .total-score { background: #fff; }
+    .dist-row td, .dist-row th { border-bottom: 1.5px solid #000; }
+"""
 
 
 def _derive_stripe(light: str) -> str:
