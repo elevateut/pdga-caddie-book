@@ -30,6 +30,62 @@ DEFAULT_POOL_COLOR = {
 
 DEFAULT_NO_MAP_HOLES: list[str] = []
 DEFAULT_IMAGE_PATTERN = "hole_{hole:02d}.jpg"
+
+# ---------------------------------------------------------------------------
+# Themes
+# ---------------------------------------------------------------------------
+# The default theme is the original light deck. A theme only carries colour and
+# type; slide structure is the same either way, so an event switches look with
+# one line of YAML (`theme: sunset`) or by supplying its own token map.
+DEFAULT_THEME: dict[str, Any] = {
+    "bg": "#ffffff",          # slide ground
+    "ink": "#0c1116",         # headings
+    "body": "#2a323d",        # body copy
+    "muted": "#5a6675",       # secondary copy
+    "hairline": "#e5eaef",    # row dividers
+    "gold": "#f8bd3c",        # highlight fill
+    "on_gold": "#0c1116",     # text and rules on `gold`
+    "callout": "#f4764b",     # alert fill
+    "on_callout": "#ffffff",  # text on `callout`
+    "on_pool": "#ffffff",     # text on a pool colour
+    "on_pool_muted": "rgba(255,255,255,0.6)",  # secondary text on a pool colour
+    "on_callout_muted": "rgba(255,255,255,0.95)",  # body text on `callout`
+    "on_ink": "#ffffff",      # text on `ink`
+    "panel": "",              # card fill; empty means use the pool's light tint
+    "on_panel": "",           # text on a card; empty means `ink`
+    "link": "#0faec5",
+    "cover_sub": "#D4B896",
+    "gradient": "linear-gradient(90deg,#f4764b,#f8bd3c)",
+    "scenery": False,         # painted sunset bands / ridges / trees on divider slides
+}
+
+THEMES: dict[str, dict[str, Any]] = {
+    "default": {},
+    # Wunderfall 26: the sunset brand (see Events/wunderfall-26/BRAND-GUIDE.md).
+    "sunset": {
+        "bg": "#1b140f",
+        "ink": "#f7e6c4",
+        "body": "#e9d3ad",
+        "muted": "#c9b28e",
+        "hairline": "#3d1811",
+        "gold": "#f8bd3c",
+        "on_gold": "#1b140f",
+        "callout": "#f8bd3c",
+        "on_callout": "#1b140f",
+        "on_callout_muted": "#3d1811",
+        "on_pool": "#f7e6c4",
+        "on_pool_muted": "#c9b28e",
+        "on_ink": "#f7e6c4",
+        "panel": "#3d1811",
+        "on_panel": "#f7e6c4",
+        "link": "#f8bd3c",
+        "cover_sub": "#e9d3ad",
+        "gradient": "linear-gradient(90deg,#f4764b,#f6893f,#f8bd3c,#fee021,#ffdd88)",
+        "scenery": True,
+    },
+}
+
+
 DEFAULT_FONT_FAMILY = "system-ui, -apple-system, Helvetica, Arial, sans-serif"
 
 # Map YAML-idiomatic lowercase override keys → PDGA's response casing.
@@ -61,6 +117,18 @@ class Event:
     @property
     def event_meta(self) -> dict[str, Any]:
         return self.raw.get("event") or {}
+
+    @property
+    def theme(self) -> dict[str, Any]:
+        """Colour + type tokens for the deck. `theme:` is a name, a token map, or both."""
+        raw = self.raw.get("theme")
+        name, overrides = "default", {}
+        if isinstance(raw, str):
+            name = raw
+        elif isinstance(raw, dict):
+            name = raw.get("name", "default")
+            overrides = {k: v for k, v in raw.items() if k != "name"}
+        return {**DEFAULT_THEME, **THEMES.get(name, {}), **overrides}
 
     @property
     def brand(self) -> dict[str, Any]:
@@ -121,7 +189,8 @@ class Event:
         Order of precedence:
             1. per_layout override (most specific)
             2. per_pool override
-            3. default pattern (e.g. "hole_03.jpg")
+            3. per_hole override (same image for every pool — letter holes live here)
+            4. default pattern (e.g. "hole_03.jpg")
 
         Returns None if the hole is in `no_map_holes`.
         """
@@ -140,6 +209,12 @@ class Event:
         per_pool = (cfg.get("per_pool") or {}).get(pool_key)
         if per_pool and course_hole in per_pool:
             return f"{base_dir}/{per_pool[course_hole]}"
+
+        # per_hole override — one image for every pool. The default pattern cannot name a
+        # letter hole like "10A", so this is how those get a map.
+        per_hole = cfg.get("per_hole") or {}
+        if course_hole in per_hole:
+            return f"{base_dir}/{per_hole[course_hole]}"
 
         # default pattern — only applies to numeric hole labels
         pattern = cfg.get("default_pattern") or DEFAULT_IMAGE_PATTERN
