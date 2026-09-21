@@ -45,13 +45,17 @@ pdga-caddie-book build my-event/event.yaml --output ./output
 # 4. Build printable scorecards
 pdga-caddie-book scorecards my-event/event.yaml --output ./output
 
-# 5. (optional) Export PDFs
+# 5. Share images (og:image) and PDFs both need Playwright
 pip install pdga-caddie-book[pdf]
 playwright install chromium
+pdga-caddie-book og my-event/event.yaml          # one 1200x630 preview card per pool
 pdga-caddie-book pdf ./output/scorecard-*.html
 ```
 
-Deploy the generated `*-slides.html` to any static host. ElevateUT hosts ours on [elevateut.org/caddy/wunderment/a](https://elevateut.org/caddy/wunderment/a).
+Deploy the generated `*-slides.html` to any static host, with the `images/` folder. **Ship the share
+images with every deploy.** A caddie book travels as a link in group texts and social posts, and the
+books' `og:image` tags point at `deploy.og_image_pattern`: without those files a shared link has no
+preview. `build` warns when one is missing. ElevateUT hosts ours on [elevateut.org/caddy/wunderment/a](https://elevateut.org/caddy/wunderment/a).
 
 ## Why PDGA-first?
 
@@ -124,6 +128,10 @@ pdga-caddie-book build EVENT_YAML [--output DIR] [--layouts FILE]
 
 pdga-caddie-book scorecards EVENT_YAML [--output DIR] [--layouts FILE]
     Generate printable duplex scorecards.
+
+pdga-caddie-book og EVENT_YAML [--output DIR] [--pool KEY]
+    Render each pool's share image (og:image, 1200x630) from its cover slide, to
+    deploy.og_image_pattern under the event directory. Requires Playwright.
 
 pdga-caddie-book pdf HTML_FILE [HTML_FILE...]
     Export HTML files to PDF via Playwright (requires `pip install .[pdf]`).

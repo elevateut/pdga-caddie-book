@@ -22,6 +22,7 @@ PDGA Tournament Manager → pdga.fetch_layouts(id) → layouts.json
                                           event.yaml + layouts.json
                                                      ↓
                               builder.build_event(...) → pool-{X}-slides.html
+                              og.build_event(...) → images/og-pool-{x}.jpg (share image per pool)
                               scorecards.build_event(...) → scorecard-{pool}-day{N}.html
                               guide_builder.build_event_guides(...) → spectator-guide.html
                                                      ↓
@@ -38,6 +39,7 @@ Key modules:
 - `pdga_caddie_book/builder.py` — caddie book orchestrator, default slide order + custom slide injection
 - `pdga_caddie_book/scorecards.py` — printable duplex scorecards w/ rotated single-column back
 - `pdga_caddie_book/pdf.py` — Playwright wrapper
+- `pdga_caddie_book/og.py` — share images (og:image, 1200x630) from each pool's cover, via Playwright; `build` warns when one is missing. Every deployed book ships one
 
 ## Themes
 

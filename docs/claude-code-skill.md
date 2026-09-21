@@ -42,7 +42,8 @@ their request:
 | "build the caddie books" / "rebuild the slides" | `pdga-caddie-book build <event_dir>/event.yaml --output <event_dir>/output` |
 | "build the scorecards" / "print the scorecards" | `pdga-caddie-book scorecards <event_dir>/event.yaml --output <event_dir>/output` |
 | "make PDFs of the scorecards" | `pdga-caddie-book pdf <event_dir>/output/scorecard-*.html` |
-| "rebuild everything" | run `build`, `scorecards`, then `pdf` in sequence |
+| "make the share images" / "og image" / "link preview" | `pdga-caddie-book og <event_dir>/event.yaml` |
+| "rebuild everything" | run `build`, `og`, `scorecards`, then `pdf` in sequence |
 
 If the user names a pool (e.g. "rebuild A pool only"), add `--pool A`.
 
@@ -51,6 +52,11 @@ If the user names a pool (e.g. "rebuild A pool only"), add `--pool A`.
 - The user's event directory should contain `event.yaml`. Cache the PDGA layouts
   to `layouts.json` next to the yaml. Commit both to source control.
 - After building, always show the user where the output files landed.
+- **Every caddie book ships with a share image.** The books are passed around as links, and their
+  `og:image` tags point at `deploy.og_image_pattern`. Make sure `event.yaml` sets `deploy.url_base` and
+  `deploy.og_image_pattern`, run `og` after `build` (and again whenever the event name, dates, tagline,
+  pool names, colours or logos change), and treat a `WARN ... share image` line from `build` as a blocker
+  for deploying. After deploying, fetch each image URL and confirm it returns a 1200x630 image.
 - If they ask to deploy, check whether they have a static-host workflow already
   configured (Vercel, Netlify, Cloudflare Pages, GitHub Pages). If yes, copy
   the built HTMLs to the right path and let them push. If no, ask.

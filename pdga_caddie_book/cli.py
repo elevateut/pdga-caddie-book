@@ -69,6 +69,12 @@ event:
 brand:
   primary_logo: images/logo.png
 
+# Where the books are hosted. og_image_pattern names each pool's share image (the preview card
+# when the link is shared); `pdga-caddie-book og` renders them.
+deploy:
+  url_base: "https://example.com/caddy/my-event"
+  og_image_pattern: "images/og-pool-{pool}.jpg"
+
 pools:
   A:
     name: "A Pool"
@@ -94,6 +100,32 @@ def cmd_build(args: argparse.Namespace) -> int:
         output_dir=args.output,
         pdga_layouts_path=args.layouts,
         pool_filter=args.pool,
+    )
+    for p in written:
+        print(f"Wrote {p}")
+    _warn_share(args)
+    return 0
+
+
+def _warn_share(args: argparse.Namespace) -> None:
+    """A book without a share image previews as a bare link. Say so on every build."""
+    from . import og
+    from .config import load_event
+
+    event = load_event(args.event, pdga_layouts_path=args.layouts)
+    keys = [k for k in event.pools if not args.pool or k in args.pool]
+    for w in og.share_warnings(event, keys):
+        print(f"WARN {w}", file=sys.stderr)
+
+
+def cmd_og(args: argparse.Namespace) -> int:
+    from . import og
+
+    written = og.build_event(
+        event_yaml_path=args.event,
+        pdga_layouts_path=args.layouts,
+        pool_filter=args.pool,
+        output_dir=args.output,
     )
     for p in written:
         print(f"Wrote {p}")
@@ -162,6 +194,13 @@ def build_parser() -> argparse.ArgumentParser:
     sb.add_argument("--layouts", help="Path to cached layouts.json (default: layouts.json next to event.yaml, else fetch live)")
     sb.add_argument("--pool", action="append", help="Build only this pool (can repeat)")
     sb.set_defaults(func=cmd_build)
+
+    so = sub.add_parser("og", help="Render each pool's share image (og:image, 1200x630) from the cover")
+    so.add_argument("event", help="Path to event.yaml")
+    so.add_argument("--output", "-o", help="Write here instead of deploy.og_image_pattern under the event dir")
+    so.add_argument("--layouts", help="Path to cached layouts.json")
+    so.add_argument("--pool", action="append", help="Only this pool (can repeat)")
+    so.set_defaults(func=cmd_og)
 
     ss = sub.add_parser("scorecards", help="Render printable duplex scorecards")
     ss.add_argument("event", help="Path to event.yaml")

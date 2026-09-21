@@ -110,6 +110,10 @@ deploy:
   og_image_pattern: "images/og-pool-{pool}.jpg"
 ```
 
+Set both. `pdga-caddie-book og` renders the files `og_image_pattern` names (1200x630, from each pool's
+cover slide) into the event directory, so they deploy with the other images. `build` prints a `WARN` when
+`url_base` or `og_image_pattern` is missing, or when a pool's share image does not exist yet.
+
 ## `pools` — Pool definitions
 
 Required for caddie books. Can be empty (`pools: {}`) if you're only building guides.
