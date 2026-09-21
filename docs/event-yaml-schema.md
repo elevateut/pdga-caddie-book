@@ -41,6 +41,49 @@ event:
   description: "Player-facing description, used in <meta description>"
 ```
 
+## `images.per_hole`
+
+One image for a hole, whatever pool is reading. The default pattern can only name a
+numeric hole, so a letter hole (`10A`) needs this or it renders as "No map available".
+
+```yaml
+images:
+  per_hole:
+    "10A": hole_10A.jpg
+```
+
+Precedence: `per_layout`, then `per_pool`, then `per_hole`, then the pattern.
+
+## `theme`
+
+Colour and type for the whole deck. Slide structure does not change, so an event
+switches look with one line.
+
+```yaml
+theme: sunset          # a built-in name
+```
+
+```yaml
+theme:                 # a name plus your own overrides
+  name: sunset
+  gold: "#ffcc44"
+```
+
+Built-in names: `default` (light deck, dark text) and `sunset` (dark ground with
+painted bands on the cover and day intros, built for Wunderfall 26).
+
+Tokens, all optional: `bg`, `ink`, `body`, `muted`, `hairline`, `gold`, `on_gold`,
+`callout`, `on_callout`, `on_callout_muted`, `on_pool`, `on_pool_muted`, `on_ink`,
+`panel`, `on_panel`, `link`, `cover_sub`, `gradient`, `scenery`.
+
+`panel` is the card fill; leave it empty and cards use a pale tint of the pool
+colour, which is what a light deck wants. `scenery: true` draws the sunset bands,
+sun disc, ridges, pine strip and grain behind the cover, the day intros and the
+back cover.
+
+**Readability floor:** no informational text renders below 15px. These decks are
+read on a phone, outdoors, at arm's length.
+
 ## `brand` — Logos and typography
 
 ```yaml

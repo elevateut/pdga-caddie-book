@@ -39,6 +39,25 @@ Key modules:
 - `pdga_caddie_book/scorecards.py` — printable duplex scorecards w/ rotated single-column back
 - `pdga_caddie_book/pdf.py` — Playwright wrapper
 
+## Themes
+
+`event.yaml` takes `theme:` (a name, a token map, or both). `default` is the original
+light deck; `sunset` is the Wunderfall 26 dark brand. Builders read `event.theme` and
+must never hardcode a colour again — every literal in `slides.py` was replaced with a
+token, and the Wunderment reference output is the regression test: changing a theme
+must leave `examples/wunderment-26` byte-identical.
+
+`_panel(th, pc)` returns (fill, heading colour, body colour). A light theme tints the
+card with the pool colour and keeps the page text colours; a dark theme sets `panel`
+and `on_panel` and both text roles collapse onto it. Do not reach for `pc["light"]`
+directly in a builder.
+
+Two fills need distinct text tokens and are easy to confuse: `callout` (the orange
+alert on the parking slide, white text) and `gold` (the rules callout, dark text via
+`on_gold`). Getting these backwards produces cream-on-gold, which is unreadable.
+
+**No informational text below 15px.** The deck is read on a phone, outdoors.
+
 ## Hard-won gotchas (do not re-litigate)
 
 **CSS units in print mode.** `100vh`/`100vw` resolve to the *browser viewport* (typically 720px tall), NOT the print page. Mix vh/vw with `inch` units and your JS measurements diverge from your PDF output. The scorecard CSS uses inches throughout for exactly this reason. `pdf.py` sets Playwright viewport to 816×1056 (Letter at 96dpi) so the rendering box matches print box.

@@ -127,6 +127,10 @@ def _render_shell(
     .reveal .controls {{ color: {color["accent"]}; bottom: 4px !important; right: 4px !important; }}
     .reveal .controls button {{ width: 32px; height: 32px; }}
     .reveal p {{ margin: 0; }}
+    /* reveal's themes style <img> with a 15px margin, a 4px border and a shadow. This
+       generator positions and sizes every image itself, so that default silently shifts
+       art (it pushed the cover/day-intro medallion 19px off its sun disc). Reset it. */
+    .reveal img {{ margin: 0; border: 0; background: none; box-shadow: none; }}
     .reveal .slides section::-webkit-scrollbar {{ display: none; }}
     .reveal .slides section {{ scrollbar-width: none; }}
   </style>
