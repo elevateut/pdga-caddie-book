@@ -20,8 +20,11 @@ from .config import Event
 # ---------------------------------------------------------------------------
 # Small style helpers
 # ---------------------------------------------------------------------------
-def _section(content: str, bg: str) -> str:
-    return f'<section data-background-color="{bg}">{content}</section>'
+def _section(content: str, bg: str, sid: str | None = None) -> str:
+    # An id makes the slide a named anchor: reveal's hash router takes #/<id>, so anything in the
+    # deck can link straight to it (the cover's jump button does).
+    ident = f' id="{sid}"' if sid else ""
+    return f'<section{ident} data-background-color="{bg}">{content}</section>'
 
 
 def _eyebrow(text: str, color: str) -> str:
@@ -268,7 +271,7 @@ def schedule(event: Event, pool_key: str) -> str:
       <div style="text-align:left; max-width:440px; margin:0 auto; font-size:18px; line-height:1.5; color:{th["body"]};">
         {''.join(blocks)}
       </div>"""
-    return _section(inner, th["bg"])
+    return _section(inner, th["bg"], sid="schedule")
 
 
 # ---------------------------------------------------------------------------
@@ -312,7 +315,7 @@ def parking(event: Event, pool_key: str) -> str:
       <div style="text-align:left; max-width:440px; margin:0 auto; font-size:18px; line-height:1.5; color:{th["body"]};">
         {body}
       </div>"""
-    return _section(inner, th["bg"])
+    return _section(inner, th["bg"], sid="parking")
 
 
 # ---------------------------------------------------------------------------
@@ -349,7 +352,7 @@ def camping(event: Event, pool_key: str) -> str:
       <div style="text-align:left; max-width:440px; margin:0 auto; font-size:19px; line-height:1.5; color:{th["body"]};">
         {''.join(rows)}
       </div>"""
-    return _section(inner, th["bg"])
+    return _section(inner, th["bg"], sid="camping")
 
 
 # ---------------------------------------------------------------------------
@@ -381,13 +384,14 @@ def pools_overview(event: Event, pool_key: str) -> str:
         {''.join(cards)}
       </div>
       <p style="font-size:15px; color:{th["muted"]}; margin-top:14px;">Your pool is highlighted above.</p>"""
-    return _section(inner, th["bg"])
+    return _section(inner, th["bg"], sid="pools")
 
 
 # ---------------------------------------------------------------------------
 # TD / ED welcomes
 # ---------------------------------------------------------------------------
-def _welcome_page(event: Event, pool_key: str, who: dict, page: dict, eyebrow_text: str, is_last: bool) -> str:
+def _welcome_page(event: Event, pool_key: str, who: dict, page: dict, eyebrow_text: str, is_last: bool,
+                  sid: str | None = None) -> str:
     th = event.theme
     pc = event.pool_color(pool_key)
     photo = ""
@@ -424,7 +428,7 @@ def _welcome_page(event: Event, pool_key: str, who: dict, page: dict, eyebrow_te
         {paragraphs}
       </div>
       {sig}"""
-    return _section(inner, th["bg"])
+    return _section(inner, th["bg"], sid=sid)
 
 
 def td_welcome(event: Event, pool_key: str) -> list[str]:
@@ -447,7 +451,8 @@ def ed_welcome(event: Event, pool_key: str) -> list[str]:
         "paragraphs": who.get("paragraphs") or [],
     }]
     return [
-        _welcome_page(event, pool_key, who, page, "From the Executive Director", i == len(pages) - 1)
+        _welcome_page(event, pool_key, who, page, "From the Executive Director", i == len(pages) - 1,
+                      sid="ed-welcome" if i == 0 else None)
         for i, page in enumerate(pages)
     ]
 
@@ -526,6 +531,43 @@ def sponsors(event: Event, pool_key: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Contents
+# ---------------------------------------------------------------------------
+def contents(event: Event, pool_key: str) -> str:
+    """A tap-anywhere table of contents. Rows are links to named slides (see _section's sid)."""
+    th = event.theme
+    pc = event.pool_color(pool_key)
+    c = event.raw.get("contents") or {}
+    items = c.get("items") or []
+
+    rows = []
+    for it in items:
+        if it.get("pool") and it["pool"] != pool_key:
+            continue
+        note = it.get("note") or ""
+        note_html = (f'<div style="font-size:14px; font-weight:500; color:{th["muted"]}; '
+                     f'margin-top:3px;">{note}</div>') if note else ""
+        rows.append(
+            f'<a href="#/{it.get("target", "")}" style="display:flex; align-items:center; justify-content:space-between; '
+            f'gap:14px; text-decoration:none; background:rgba(255,255,255,0.055); border:1px solid rgba(255,255,255,0.10); '
+            f'border-left:5px solid {pc["accent"]}; border-radius:12px; padding:14px 16px; margin-bottom:10px; '
+            'min-height:62px; box-sizing:border-box; text-align:left;">'
+            '<div>'
+            f'<div style="font-size:19px; font-weight:900; letter-spacing:0.02em; color:{th["ink"]}; line-height:1.15;">'
+            f'{it.get("label", "")}</div>{note_html}</div>'
+            f'<div style="font-size:26px; font-weight:900; color:{pc["accent"]}; line-height:1;">&rsaquo;</div></a>'
+        )
+
+    inner = f"""
+      {_eyebrow(event.pools.get(pool_key, {}).get("name", pool_key), pc["accent"])}
+      <div style="font-size:32px; font-weight:900; text-transform:uppercase; color:{th["ink"]}; margin-bottom:6px;">{c.get("title", "Contents")}</div>
+      {_divider(th)}
+      <div style="width:100%; max-width:460px; margin:0 auto; box-sizing:border-box;">{''.join(rows)}</div>
+      <div style="margin-top:10px; font-size:14px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:{th["muted"]};">Or swipe through &rarr;</div>"""
+    return _section(inner, th["bg"], sid="contents")
+
+
+# ---------------------------------------------------------------------------
 # Rules
 # ---------------------------------------------------------------------------
 def rules(event: Event, pool_key: str) -> str:
@@ -575,7 +617,7 @@ def rules(event: Event, pool_key: str) -> str:
       <div style="text-align:left; max-width:440px; margin:0 auto; font-size:21px; line-height:{rule_lh}; color:{th["body"]};">
         {''.join(rows)}
       </div>"""
-    return _section(inner, th["bg"])
+    return _section(inner, th["bg"], sid="rules")
 
 
 # ---------------------------------------------------------------------------
@@ -637,7 +679,7 @@ def day_intro(event: Event, pool_key: str, day_index: int, repeats_previous: boo
         <div style="position:absolute; left:0; right:0; bottom:16px; display:flex; align-items:center; justify-content:center; gap:16px;">{org_logos}</div>
         {_grain(uid)}
       </div>"""
-        return _section(inner, th["bg"])
+        return _section(inner, th["bg"], sid=f"day-{day_index + 1}")
 
     inner = f"""
       <div style="display:flex; flex-direction:column; align-items:center; justify-content:space-between; height:calc(100vh - 60px); gap:16px; padding:8px 0;">
@@ -649,7 +691,7 @@ def day_intro(event: Event, pool_key: str, day_index: int, repeats_previous: boo
         </div>
         {org_logos}
       </div>"""
-    return _section(inner, pc["bg"])
+    return _section(inner, pc["bg"], sid=f"day-{day_index + 1}")
 
 
 def hole_slide(
@@ -738,7 +780,7 @@ def special_thanks(event: Event, pool_key: str) -> str:
       <div style="text-align:left; max-width:440px; margin:0 auto; font-size:18px; line-height:1.5; color:{th["body"]};">
         {''.join(rows)}
       </div>"""
-    return _section(inner, th["bg"])
+    return _section(inner, th["bg"], sid="special-thanks")
 
 
 # ---------------------------------------------------------------------------

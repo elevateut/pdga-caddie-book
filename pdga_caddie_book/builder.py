@@ -19,6 +19,7 @@ from .shell import render as render_shell
 
 DEFAULT_ORDER = [
     "cover",
+    "contents",
     "schedule",
     "parking",
     "camping",
@@ -35,6 +36,7 @@ DEFAULT_ORDER = [
 # Each builder returns either a single HTML string or a list of HTML strings.
 BUILDERS: dict[str, Callable] = {
     "cover": slides.cover,
+    "contents": slides.contents,
     "schedule": slides.schedule,
     "parking": slides.parking,
     "camping": slides.camping,

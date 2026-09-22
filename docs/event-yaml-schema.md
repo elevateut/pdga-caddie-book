@@ -12,6 +12,7 @@ brand: { ... }            # Logos + typography
 deploy: { ... }           # Hosting URLs + OG image patterns
 pools: { A: { ... }, B: { ... }, ... }  # Pool definitions (caddie books)
 hole_overrides: { ... }   # Per-hole text/par/length overrides
+contents: { ... }         # Tap-anywhere table of contents (slide 2)
 images: { ... }           # Hole image resolution rules
 schedule: [ ... ]         # Multi-day event schedule
 parking: { ... }
@@ -316,11 +317,29 @@ custom_slides:
 
 Keys are arbitrary slide IDs (alphanumeric/underscore). `after` names a built-in slide ID to follow. If `after` isn't matched, the slide is appended at the end.
 
+## `contents` — Table of contents
+
+A tap-anywhere index, normally slide 2. Each row is a link to a named slide, sized for a thumb
+(62px minimum) rather than a mouse. Leave the key out and the slide is skipped.
+
+```yaml
+contents:
+  title: "Contents"          # optional, defaults to "Contents"
+  items:
+    - { label: "Course notes", target: "rules",  note: "OB, mandos, hazards" }
+    - { label: "Day 1",        target: "day-1",  note: "Saturday, September 26" }
+    - { label: "Pool B only",  target: "pools",  pool: "B" }   # optional: show for one pool
+```
+
+`target` is a slide id. The built-in ids are `contents`, `schedule`, `parking`, `camping`, `pools`,
+`ed-welcome`, `rules`, `special-thanks`, and `day-1`, `day-2`, ... for each round intro. reveal's
+hash router resolves `#/<id>`, so any slide can link to any other the same way.
+
 ## `slide_order` — Override default order
 
 If you skip this, the default is:
 ```
-cover, schedule, parking, camping, pools, td_welcome, ed_welcome,
+cover, contents, schedule, parking, camping, pools, td_welcome, ed_welcome,
 sponsors, rules, days_and_holes, special_thanks, back_cover
 ```
 
